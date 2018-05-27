@@ -6,7 +6,7 @@ import '../App.css';
 const Footer = () => {
 	return (
 
-        <footer className="page-footer center-align">
+        <footer className="page-footer blue accent-2 center-align">
             <div className="container">
                 <div className="row">
                     <div className="col l6 s12">

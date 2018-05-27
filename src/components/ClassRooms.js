@@ -30,28 +30,25 @@ class ClassRooms extends Component {
             .map(classroom => {
                 console.log("1 Classroom: ", classroom);
                 return (
-                    <div className="row allclassrooms" key={classroom._id}>
-                        <div className="col s12 m7">
+                    <div className="row allclassrooms card-action hoverable" key={classroom._id}>
+                        <Link to='/' className="col s12 m7">
                             <div className="card">
                                 <div className="card-image">
                                     <h4 className="center-align">{ classroom.title }</h4>
                                     <h4 className="center-align">{ classroom.teacher }</h4>
                                     <img src={ classroom.image_url } alt={ classroom.image_url }/>
                                 </div>
-                            <div className="card-content">
-                                <p> { classroom.info } </p>
-                            </div>
-                                <div className="card-action hoverable">
-                                    <Link to='/' >More Details</Link>
+                                <div className="card-content">
+                                    <p> { classroom.info } </p>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     </div>        
                 );
             }); 
 
         return (
-            <div>
+            <div className="blue accent-1">
                 <Header/>
 
                  { results } 
