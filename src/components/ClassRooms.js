@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 import ClassRoomsModel from '../models/ClassRoomsModel';
 // import header , footer
+import Header from './Header';
+import Footer from './Footer';
+
 
 class ClassRooms extends Component {
 
@@ -49,12 +52,11 @@ class ClassRooms extends Component {
 
         return (
             <div>
-                "ClassRooms Page"
-                {/* { Header } */} 
+                <Header/>
 
                  { results } 
 
-                {/* { Footer  } */} 
+                <Footer/>
                
             </div>
         )

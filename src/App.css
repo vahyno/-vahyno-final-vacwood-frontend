@@ -1,4 +1,4 @@
-.home {
+/* .home {
   background-image: url('./imgs/bus.jpg');
   background-size:     cover;
   background-repeat:   no-repeat;
@@ -24,17 +24,11 @@
 .home h5{
   font-size: 0.4em;
   font-weight: 900;
-}
+} */
 
 .allclassrooms {
   width: 50%;
 }
-
-/* body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-} */
 
 .comment_form {
   margin-left: 5%;
