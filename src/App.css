@@ -1,28 +1,64 @@
-.App {
-  text-align: center;
+.home {
+  background-image: url('./imgs/bus.jpg');
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  padding-top: 100px;
+  color: #fff;
+  font-family: sans-serif;
+  letter-spacing: .35em;
+  font-size: 8em;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.home_text {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.home h1{
+  font-size: 0.7em;
+  font-weight: 900;
+
 }
 
-.App-title {
-  font-size: 1.5em;
+.home h5{
+  font-size: 0.4em;
+  font-weight: 900;
 }
 
-.App-intro {
-  font-size: large;
+/* body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+} */
+
+.comment_form {
+  margin-left: 5%;
+  width: 80%;
+}  
+
+main {
+  flex: 1 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.brand-logo {
+  margin-left: 1em;
 }
+
+.nav_link {
+  margin-right: 2em; 
+}
+
+.singleClassroomImg {
+  width: 50%;
+  margin-left: 25%;
+}
+
+.update-btn {
+  margin: 0.5em 25% 0 0.25em
+}
+
+.delete-btn {
+  margin-top: 0.5em;
+}
+    
