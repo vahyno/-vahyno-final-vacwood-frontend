@@ -9,22 +9,37 @@ class NewClassRoom extends Component {
         title: '',
         teacher: '',
         info: '',
-        image_url: '',
+        image_url: `http://www.smilesforall.com/wp-content/uploads/2013/10/schoolbus.png`,
     }
 
     handleInputChange = (e) => {
-        console.log('event', e)
-        console.log('target', e.target)
+        // console.log('event', e)
+        // console.log('target', e.target)
         let inputFieldName = e.target.name;
         this.setState({
         [inputFieldName]: e.target.value //computer property
         })
-        console.log('state', this.state)
+        // console.log('state', this.state)
     }
 
     onFormSubmit = (e) => {
         e.preventDefault();
         console.log('Form Submit');
+        let formData = {
+            title: this.state.title,
+            teacher: this.state.teacher,
+            info: this.state.info,
+            image_url: this.state.image_url,
+            comments: [],    
+        }
+        ClassRoomsModel.createNew(formData)
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    results: data.data
+                });
+                this.props.history.push('/classrooms');
+            });
     }
 
     render(){
