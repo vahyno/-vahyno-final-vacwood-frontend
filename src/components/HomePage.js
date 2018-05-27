@@ -10,11 +10,11 @@ class HomePage extends Component {
                 <div className="center-align">
                     <h1 className="home_text">VacWood School Community</h1>
                     <h5 className="home_text">A Place for Teachers and Families to Connect</h5>
-                    <Link to='/' className='waves-effect waves-light blue btn-large'>Enter</Link>
+                    <Link to='/classrooms' className='waves-effect waves-light blue btn-large'>Enter</Link>
                 </div>
             </div>
-		);
-	}
+        )
+    }
 }
-
+    
 export default HomePage;
