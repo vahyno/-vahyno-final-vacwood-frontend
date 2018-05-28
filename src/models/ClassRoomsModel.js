@@ -18,15 +18,15 @@ class ClassRoomsModel {
         return request;
     }
 
-    // static editClassroom = (classroom_id, classroom) => {
-    //     const request = axios.put(`http://localhost:8080/api/classrooms/${classroom_id}`, classroom);
-    //     return request;
-    // }
+    static editClassroom = (classroom_id, classroom) => {
+        const request = axios.put(`http://localhost:8080/api/classrooms/${classroom_id}`, classroom);
+        return request;
+    }
 
-    // static destroyClassroom = (classroom_id) => {
-    //     const request = axios.delete(`http://localhost:8080/api/classrooms/${classroom_id}`);
-    //     return request;
-    // }
+    static destroyClassroom = (classroom_id) => {
+        const request = axios.delete(`http://localhost:8080/api/classrooms/${classroom_id}`);
+        return request;
+    }
 
     // comment related methods
 

@@ -43,13 +43,25 @@ class SingleClassRoom extends Component {
         });
     }
 
+    deleteClassroom = (classroom_id) => {
+        console.log("classroom_id: ", classroom_id); 
+        if (window.confirm('Are you sure you want to delete this Classroom?')) {
+            ClassRoomsModel.destroyClassroom(classroom_id)
+              .then(deleted_classroom=>{
+                console.log(deleted_classroom);
+                this.props.history.push('/classrooms');
+              })
+        
+        }      
+    } 
+
     replyComment = (comment_id) => {
         console.log(comment_id);
     }
 
-    editComment = (comment_id) => {
-        console.log(comment_id);
-    }
+    // editComment = (comment_id) => {
+    //     console.log(comment_id);
+    // }
 
 
     handleCommentForm = (event) => {
@@ -97,11 +109,11 @@ class SingleClassRoom extends Component {
                                     onClick={()=>this.deleteComment(comment._id)}>
                                     X
                                 </button>
-                                <button  
-                                    className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right"
-                                    onClick={()=>this.editComment(comment._id)}>
+                                <Link
+                                    to ={{pathname: `/classrooms/${singleClassroom._id}/${comment._id}/update`, state: {oldFormData: this.state.classroom}}}  
+                                    className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right">
                                     edit
-                                </button>
+                                </Link>
                                 <button  
                                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
                                     onClick={()=>this.replyComment(comment._id)}>
@@ -116,11 +128,26 @@ class SingleClassRoom extends Component {
         return (
             <div>
                 <Header/>
+                <Link 
+                    to ={{pathname: `/classrooms/${singleClassroom._id}/update`, state: {oldFormData: this.state.classroom}}} 
+                    className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right">
+                    Update Classroom
+                </Link>
+                <button 
+                    onClick={() => this.deleteClassroom(singleClassroom._id)} 
+                    className="commentButton btn-flat btn-small waves-effect waves-light red lighten-1 btn right">
+                    Delete Classroom
+                </button>
+
+                <br/>
                 <h4 className="center-align"> { singleClassroom.title } </h4>
                 <h4 className="center-align">teacher: { singleClassroom.teacher } </h4>
                 <Link to ={`/classrooms`} className="col s12 m7">
                 <img src={ singleClassroom.image_url } alt={singleClassroom.title} className="hoverable singleClassroomImg"/>
                 </Link>
+                <br/>
+
+
 
                 {/* comment form */}
                 <div className="row comment_form">
