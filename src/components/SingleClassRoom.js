@@ -45,7 +45,31 @@ class SingleClassRoom extends Component {
 
     replyComment = (comment_id) => {
         console.log(comment_id);
+    }
 
+    handleCommentForm = (event) => {
+        let newComment = event.target.value;
+        this.setState({
+            newComment,
+        })
+        console.log(newComment);
+    }
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
+        let classroomId = this.props.match.params.classroom_id;
+        let commentContent = this.state.newComment;
+        ClassRoomsModel.newComment(classroomId, commentContent)
+        .then(newComment => {
+            this.setState({
+                classroom: {
+                    ...this.state.classroom,
+                    comments: this.state.classroom.comments.concat(newComment.data),
+                },
+                newComment: '',
+            });
+        });
+        console.log(this.state)
     }
 
 
@@ -69,7 +93,7 @@ class SingleClassRoom extends Component {
                                     X
                                 </button>
                                 <button  
-                                    className="commentButton btn-flat btn-small waves-effect waves-light green right"
+                                    className="commentButton btn-flat btn-small waves-effect waves-light blue right"
                                     onClick={()=>this.replyComment(comment._id)}>
                                     reply
                                 </button>
@@ -88,7 +112,23 @@ class SingleClassRoom extends Component {
                 <img src={ singleClassroom.image_url } alt={singleClassroom.title} className="hoverable singleClassroomImg"/>
                 </Link>
 
-                <h6>here will be comment form</h6>
+                {/* comment form */}
+                <div className="row comment_form">
+                    <form className="col s12" onSubmit={ this.onFormSubmit }>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <input onInput={this.handleCommentForm}
+                                value={this.state.newComment}
+                                placeholder="Write your message!"
+                                id="comment"
+                                type="text"
+                                className="validate" required/>
+                            </div>
+                        </div>
+                        <button className="commentButton btn-flat btn-small waves-effect waves-light blue right" type="submit" name="action">New Message</button>
+                    </form>
+                </div>
+
 
                 {/* end of comment form */}
 
