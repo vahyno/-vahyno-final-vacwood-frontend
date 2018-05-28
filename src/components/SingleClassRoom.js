@@ -47,6 +47,11 @@ class SingleClassRoom extends Component {
         console.log(comment_id);
     }
 
+    editComment = (comment_id) => {
+        console.log(comment_id);
+    }
+
+
     handleCommentForm = (event) => {
         let newComment = event.target.value;
         this.setState({
@@ -93,7 +98,12 @@ class SingleClassRoom extends Component {
                                     X
                                 </button>
                                 <button  
-                                    className="commentButton btn-flat btn-small waves-effect waves-light blue right"
+                                    className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right"
+                                    onClick={()=>this.editComment(comment._id)}>
+                                    edit
+                                </button>
+                                <button  
+                                    className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
                                     onClick={()=>this.replyComment(comment._id)}>
                                     reply
                                 </button>
@@ -125,7 +135,7 @@ class SingleClassRoom extends Component {
                                 className="validate" required/>
                             </div>
                         </div>
-                        <button className="commentButton btn-flat btn-small waves-effect waves-light blue right" type="submit" name="action">New Message</button>
+                        <button className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right" type="submit" name="action">New Message</button>
                     </form>
                 </div>
 
