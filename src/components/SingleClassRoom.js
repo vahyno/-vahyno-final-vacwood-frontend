@@ -9,7 +9,7 @@ import Footer from './Footer';
 class SingleClassRoom extends Component {
     state = {
         classroom: null,
-        query: '',
+        newComment: '',
     }
 
     componentDidMount() {
@@ -22,6 +22,32 @@ class SingleClassRoom extends Component {
             });
         });
     }
+
+    deleteComment = (comment_id) => {
+        let classroomId = this.props.match.params.classroom_id;
+        console.log("classroomId: ", classroomId);
+        console.log("comment_id: ", comment_id );
+        ClassRoomsModel.destroyComment(classroomId, comment_id)
+        .then(commentUpdate => {
+            console.log(commentUpdate);
+            let updatedComments = this.state.classroom.comments.filter(comment =>{
+                return comment._id !== comment_id;
+            });
+            console.log(updatedComments);
+            this.setState({
+                classroom: {
+                    ...this.state.classroom,
+                    comments: updatedComments,
+                }
+            });
+        });
+    }
+
+    replyComment = (comment_id) => {
+        console.log(comment_id);
+
+    }
+
 
     render(){
         let singleClassroom = this.state.classroom === null ? <h2>Loading...</h2> : this.state.classroom
@@ -37,8 +63,16 @@ class SingleClassRoom extends Component {
                         <div className="card">
                             <div className="created_at">{ formatedCreated_at }</div>
                             <div className="card-body">{ comment.content }
-                                <button  className="commentButton btn-flat btn-small waves-effect waves-light red right">X</button>
-                                <button  className="commentButton btn-flat btn-small waves-effect waves-light green right">reply</button>
+                                <button  
+                                    className="commentButton btn-flat btn-small waves-effect waves-light red right"
+                                    onClick={()=>this.deleteComment(comment._id)}>
+                                    X
+                                </button>
+                                <button  
+                                    className="commentButton btn-flat btn-small waves-effect waves-light green right"
+                                    onClick={()=>this.replyComment(comment._id)}>
+                                    reply
+                                </button>
                             </div>
                         </div>
                     </div>
