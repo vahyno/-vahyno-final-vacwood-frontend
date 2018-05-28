@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from './components/HomePage'
 import ClassRooms from './components/ClassRooms';
 import NewClassRoom from './components/NewClassRoom';
+import SingleClassRoom from './components/SingleClassRoom';
 
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
           <Route exact path='/' component={ HomePage } />
           <Route exact path='/classrooms/new' component={ NewClassRoom } />
           <Route exact path='/classrooms' component={ ClassRooms } />
+          <Route exact path="/classrooms/:classroom_id" component={ SingleClassRoom } />
       </Switch>
       
       </div>

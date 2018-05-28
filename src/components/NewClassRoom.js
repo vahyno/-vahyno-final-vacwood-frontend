@@ -24,7 +24,7 @@ class NewClassRoom extends Component {
 
     onFormSubmit = (e) => {
         e.preventDefault();
-        console.log('Form Submit');
+        // console.log('Form Submit');
         let formData = {
             title: this.state.title,
             teacher: this.state.teacher,
@@ -34,7 +34,7 @@ class NewClassRoom extends Component {
         }
         ClassRoomsModel.createNew(formData)
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 this.setState({
                     results: data.data
                 });
@@ -46,7 +46,7 @@ class NewClassRoom extends Component {
         return (
             <div>
                 <Header/>
-                <div className="column newformclass">
+                <div className="column newformclass center-align">
                     <form className="col s12" onSubmit={this.onFormSubmit}>
                         <div className="input-field col s12">
                             <input onChange={ this.handleInputChange } name="title" value={this.state.title} placeholder="Title" id="title" type="text" className="validate" required/>
@@ -60,7 +60,7 @@ class NewClassRoom extends Component {
                         <div className="input-field col s12">
                             <input onChange={ this.handleInputChange } name="image_url" value={this.state.image_url} placeholder="Add image url" id="image" type="text" className="validate" required/>
                         </div>
-                        <button className="waves-effect waves-light indigo lighten-2 btn create-btn" type="submit" name="action">Create New Classroom</button>
+                        <button className="waves-effect waves-light blue lighten-2 btn" type="submit" name="action">Create New Classroom</button>
                     </form>
                 </div>
                 <Footer/>

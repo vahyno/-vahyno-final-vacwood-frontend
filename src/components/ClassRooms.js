@@ -31,7 +31,7 @@ class ClassRooms extends Component {
                 console.log("1 Classroom: ", classroom);
                 return (
                     <div className="row allclassrooms card-action hoverable" key={classroom._id}>
-                        <Link to='/' className="col s12 m7">
+                        <Link to ={`/classrooms/${classroom._id}`} className="col s12 m7">
                             <div className="card">
                                 <div className="card-image">
                                     <h4 className="center-align">{ classroom.title }</h4>
