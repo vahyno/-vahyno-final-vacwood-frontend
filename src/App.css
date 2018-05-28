@@ -33,10 +33,10 @@
 
 
 
-.comment_form {
+/* .comment_form {
   margin-left: 5%;
   width: 80%;
-}  
+}   */
 
 main {
   flex: 1 0 auto;
@@ -50,10 +50,10 @@ main {
   margin-right: 2em; 
 }
 
-.singleClassroomImg {
+/* .singleClassroomImg {
   width: 50%;
   margin-left: 25%;
-}
+} */
 
 .newformclass {
   margin: 6% 10%;

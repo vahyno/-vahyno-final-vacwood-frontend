@@ -1,0 +1,19 @@
+.comment_form {
+    margin-left: 5%;
+    width: 80%;
+  }  
+
+.singleClassroomImg {
+    width: 50%;
+    margin-left: 25%;
+}
+
+.commentButton {
+    padding: 0 1%;
+}
+
+.created_at {
+    margin-left: 1.5%;
+    padding-top: 1em;
+    font-weight: 600;
+}
