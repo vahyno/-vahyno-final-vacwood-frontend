@@ -30,10 +30,11 @@ class SingleClassRoom extends Component {
         return (
             <div>
                 <Header/>
-
                 <h4 className="center-align"> { classroom.title } </h4>
                 <h4 className="center-align">teacher: { classroom.teacher } </h4>
-                <img src={ classroom.image_url } alt={classroom.title} className="singleClassroomImg"/>
+                <Link to ={`/classrooms`} className="col s12 m7">
+                <img src={ classroom.image_url } alt={classroom.title} className="hoverable singleClassroomImg"/>
+                </Link>
                 
 
 
@@ -41,7 +42,6 @@ class SingleClassRoom extends Component {
             </div>
         )
     }
-    
 }
 
 export default SingleClassRoom;

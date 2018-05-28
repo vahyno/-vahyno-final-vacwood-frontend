@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import ClassRoomsModel from '../models/ClassRoomsModel';
+import '../styles/classrooms.css';
+
 // import header , footer
 import Header from './Header';
 import Footer from './Footer';
@@ -51,8 +53,9 @@ class ClassRooms extends Component {
             <div className="blue accent-1">
                 <Header/>
 
+                <div className="row center-cols center-align">
                  { results } 
-
+                </div>
                 <Footer/>
                
             </div>
