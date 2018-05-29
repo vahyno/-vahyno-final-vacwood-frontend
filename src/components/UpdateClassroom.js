@@ -12,7 +12,8 @@ class UpdateClassroom extends Component {
         title: '',
         teacher: '',
         info: '',
-        image_url: '',      
+        image_url: '',
+        comments: [],   
     }
 
     componentDidMount() {
@@ -23,6 +24,7 @@ class UpdateClassroom extends Component {
           teacher: oldFormData.teacher,
           info: oldFormData.info,
           image_url: oldFormData.image_url,
+          comments: oldFormData.comments,
         });
     }
 
@@ -47,6 +49,7 @@ class UpdateClassroom extends Component {
             comments: this.state.comments,
         }
         let classroomId = this.props.match.params.classroom_id;
+        console.log('Form Data ', formData)
 
         ClassRoomsModel.editClassroom(classroomId, formData)
         .then(data => {
@@ -57,6 +60,7 @@ class UpdateClassroom extends Component {
                     teacher: data.data.teacher,
                     info: data.data.info,
                     image_url: data.data.image_url,
+                    comments: data.data.comments
             });
             this.props.history.push(`/classrooms/${classroomId}`);
         });

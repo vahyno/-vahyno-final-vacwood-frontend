@@ -110,7 +110,7 @@ class SingleClassRoom extends Component {
                                     X
                                 </button>
                                 <Link
-                                    to ={{pathname: `/classrooms/${singleClassroom._id}/${comment._id}/update`, state: {oldFormData: this.state.classroom}}}  
+                                    to ={{pathname: `/classrooms/${singleClassroom._id}/comments/${comment._id}/update`, state: {oldFormData: this.state.classroom}}}  
                                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right">
                                     edit
                                 </Link>
