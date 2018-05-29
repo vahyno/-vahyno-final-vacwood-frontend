@@ -93,7 +93,12 @@ class UpdateClassroom extends Component {
                             to ={`/classrooms/${classroomId}`} className="commentButton waves-effect waves-light blue lighten-3 btn update-button">
                             Cancel
                         </Link>
-                        <button className="commentButton waves-effect waves-light blue lighten-1 btn" type="submit" name="action">Update</button>
+                        <button 
+                            className="commentButton waves-effect waves-light blue lighten-1 btn" 
+                            type="submit" 
+                            name="action">
+                            Update
+                        </button>
 
                     </form>
                 </div>

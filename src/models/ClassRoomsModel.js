@@ -43,6 +43,7 @@ class ClassRoomsModel {
 
     static updateComment = (classroom_id, comment_id, comment) => {
         const request = axios.put(`http://localhost:8080/api/classrooms/${classroom_id}/comments/${comment_id}`, comment);
+        // console.log(123, request)
         return request;
     }
 }
