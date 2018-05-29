@@ -22,7 +22,7 @@ class UpdateClassroom extends Component {
           title: oldFormData.title,
           teacher: oldFormData.teacher,
           info: oldFormData.info,
-          image_url: oldFormData.image_url,      
+          image_url: oldFormData.image_url,
         });
     }
 
@@ -50,9 +50,13 @@ class UpdateClassroom extends Component {
 
         ClassRoomsModel.editClassroom(classroomId, formData)
         .then(data => {
-            console.log(data);
+            console.log(data.data);
             this.setState({
-                classroom: data.data
+                // classroom: data.data
+                    title: data.data.title,
+                    teacher: data.data.teacher,
+                    info: data.data.info,
+                    image_url: data.data.image_url,
             });
             this.props.history.push(`/classrooms/${classroomId}`);
         });
@@ -76,14 +80,16 @@ class UpdateClassroom extends Component {
                             <input onChange={ this.handleInputChange } name="teacher" value={this.state.teacher} placeholder="Teacher's name" id="teacher" type="text" className="validate" required/>
                         </div>
                         <div className="input-field col s12" >
-                            <textarea cols="40" rows="10" onChange={ this.handleInputChange } name="info" value={this.state.info} placeholder="Additional information" className="validate" id="info"></textarea>
+                            <textarea cols="40" rows="10" onChange={ this.handleInputChange } name="info" value={this.state.info} placeholder="Additional information" className="textarea validate" id="info"></textarea>
                         </div>
                         <div className="input-field col s12">
                             <input onChange={ this.handleInputChange } name="image_url" value={this.state.image_url} placeholder="Add image url" id="image" type="text" className="validate" required/>
                         </div>
-                        <button className="commentButton waves-effect waves-light blue lighten-1 btn" type="submit" name="action">Update</button>
                         <Link
-                            to ={`/classrooms/${classroomId}`} className="commentButton waves-effect waves-light blue lighten-3 btn update-button">Cancel</Link>
+                            to ={`/classrooms/${classroomId}`} className="commentButton waves-effect waves-light blue lighten-3 btn update-button">
+                            Cancel
+                        </Link>
+                        <button className="commentButton waves-effect waves-light blue lighten-1 btn" type="submit" name="action">Update</button>
 
                     </form>
                 </div>

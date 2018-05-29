@@ -9,50 +9,6 @@
   letter-spacing: .35em;
   font-size: 8em;
   height: 100vh;
-}
-
-.home_text {
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.home h1{
-  font-size: 0.7em;
-  font-weight: 900;
-
-}
-
-.home h5{
-  font-size: 0.4em;
-  font-weight: 900;
-} */
-
-/* .allclassrooms {
-  width: 40%;
-  margin-top: 2em;
-} */
-
-
-
-/* .comment_form {
-  margin-left: 5%;
-  width: 80%;
-}   */
-
-main {
-  flex: 1 0 auto;
-}
-
-.brand-logo {
-  margin-left: 1em;
-}
-
-.nav_link {
-  margin-right: 2em; 
-}
-
-/* .singleClassroomImg {
-  width: 50%;
-  margin-left: 25%;
 } */
 
 .newformclass {
@@ -67,6 +23,6 @@ main {
   margin-top: 0.5em;
 }
 
-textarea {
+.textarea {
 	height: 9em;
 }

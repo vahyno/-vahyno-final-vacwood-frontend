@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import '../App.css';
 
 
@@ -8,19 +8,12 @@ const Footer = () => {
 
         <footer className="page-footer blue accent-2 center-align">
             <div className="container">
-                <div className="row">
-                    <div className="col l6 s12">
-                        <h5 className="white-text">Footer Content</h5>
-                        <p className="grey-text text-lighten-4">Blah blah blah.</p>
-                    </div>
-                    <div className="col l4 offset-l2 s12">
-                        <h5 className="white-text">Links</h5>
+                        <h5 className="grey-text text-lighten-4">A Place for Teachers and Families to Connect.</h5>
+                        <h6 className="white-text">App source code:</h6>
                         <ul>
-                            <li><Link to='/classrooms' className="grey-text text-lighten-3" href="#!">Link 1</Link></li>
-                            <li><Link to='/classrooms' className="grey-text text-lighten-3" href="#!">Link 2</Link></li>
+                            <li><a className="grey-text text-lighten-3" href="https://github.com/vahyno/-vahyno-final-vacwood-frontend">github frontend</a></li>
+                            <li><a className="grey-text text-lighten-3" href="https://github.com/vahyno/final-vacwood-backend">github backend</a></li>
                         </ul>
-                    </div>
-                </div>
             </div>
             <div className="footer-copyright center-align">
                 <div className="container">

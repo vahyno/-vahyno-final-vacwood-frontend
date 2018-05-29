@@ -154,7 +154,7 @@ class SingleClassRoom extends Component {
                     <form className="col s12" onSubmit={ this.onFormSubmit }>
                         <div className="row">
                             <div className="input-field col s6">
-                                <input onInput={this.handleCommentForm}
+                                <textarea cols="40" rows="10" onInput={this.handleCommentForm}
                                 value={this.state.newComment}
                                 placeholder="Write your message!"
                                 id="comment"
@@ -162,7 +162,12 @@ class SingleClassRoom extends Component {
                                 className="validate" required/>
                             </div>
                         </div>
-                        <button className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right" type="submit" name="action">New Message</button>
+                        <button 
+                            className="commentNewButton btn-flat btn-small waves-effect waves-light blue accent-1 right" 
+                            type="submit" 
+                            name="action">
+                            New Message
+                        </button>
                     </form>
                 </div>
 

@@ -1,5 +1,5 @@
 .comment_form {
-    /* margin: 0 20%; */
+    margin-top: 2%;
     width: 80%;
   }  
 
@@ -13,6 +13,11 @@
     margin-left: 0.2%;
 }
 
+.commentNewButton {
+    padding: 0 1%;
+    margin: -3% 0 2% 0.2%
+}
+
 .created_at {
     margin-left: 1.5%;
     padding-top: 1em;
@@ -21,4 +26,12 @@
 
 .comment {
     margin: 0 5%;
+}
+
+.textarea {
+	height: 9em;
+}
+
+textarea {
+	height: 4em;
 }

@@ -9,7 +9,7 @@ class NewClassRoom extends Component {
         title: '',
         teacher: '',
         info: '',
-        image_url: `http://www.smilesforall.com/wp-content/uploads/2013/10/schoolbus.png`,
+        image_url: `http://blueorangegames.com/blog/wp-content/uploads/2015/11/Kindergarten-Classroom_3.jpg`,
     }
 
     handleInputChange = (e) => {
@@ -55,7 +55,7 @@ class NewClassRoom extends Component {
                             <input onChange={ this.handleInputChange } name="teacher" value={this.state.teacher} placeholder="Teacher's name" id="teacher" type="text" className="validate" required/>
                         </div>
                         <div className="input-field col s12" >
-                            <textarea cols="40" rows="10" onChange={ this.handleInputChange } name="info" value={this.state.info} placeholder="Additional information" className="validate" id="info"></textarea>
+                            <textarea cols="40" rows="10" onChange={ this.handleInputChange } name="info" value={this.state.info} placeholder="Additional information" className="textarea validate" id="info"></textarea>
                         </div>
                         <div className="input-field col s12">
                             <input onChange={ this.handleInputChange } name="image_url" value={this.state.image_url} placeholder="Add image url" id="image" type="text" className="validate" required/>
