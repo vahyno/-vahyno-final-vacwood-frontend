@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ClassRoomsModel from '../models/ClassRoomsModel';
 import { Link } from 'react-router-dom';
+import '../styles/singleClassroom.css';
 import Header from './Header';
 import Footer from './Footer';
 
-const defaultImg = 'http://blueorangegames.com/blog/wp-content/uploads/2015/11/Kindergarten-Classroom_3.jpg';
+const defaultImg = 'https://kindercraze.com/wp-content/uploads/2015/10/vintage-carnival-9.jpg';
 
 class NewClassRoom extends Component {
     state = {
@@ -92,7 +93,7 @@ class NewClassRoom extends Component {
                             Cancel
                         </Link>
                         <button 
-                            className="waves-effect waves-light blue lighten-2 btn" 
+                            className="commentButton waves-effect waves-light blue lighten-2 btn" 
                             type="submit" 
                             name="action">
                             Create New Classroom

@@ -50,19 +50,13 @@ class SingleClassRoom extends Component {
               .then(deleted_classroom=>{
                 console.log(deleted_classroom);
                 this.props.history.push('/classrooms');
-              })
-        
+              });
         }      
     } 
 
     replyComment = (comment_id) => {
         console.log(comment_id);
     }
-
-    // editComment = (comment_id) => {
-    //     console.log(comment_id);
-    // }
-
 
     handleCommentForm = (event) => {
         let newComment = event.target.value;
@@ -99,6 +93,7 @@ class SingleClassRoom extends Component {
                 console.log(comment);
                 // let datenumber = parseInt(comment.created_at.replace( /\D+/g, ''));
                 let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
+                // let formatedCreated_at = Date(comment.created_at).slice(0,24);
                 console.log(this.state.classroom.comments)
                 return (
                     <div className="comment" key={comment._id}>
@@ -169,7 +164,7 @@ class SingleClassRoom extends Component {
                         </button>
                     </form>
                 </div>
-                
+
                 {/* end of comment form */}
 
                 { classroomComments }               
