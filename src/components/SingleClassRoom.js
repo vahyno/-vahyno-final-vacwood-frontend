@@ -80,21 +80,23 @@ class SingleClassRoom extends Component {
                 newComment: '',
             });
         });
-        console.log(this.state)
+        // console.log(this.state)
     }
 
 
     render(){
         let singleClassroom = this.state.classroom === null ? <h2>Loading...</h2> : this.state.classroom
-        console.log(this.state.classroom);
+        // console.log(this.state.classroom);
 
         let classroomComments = this.state.classroom === null ? null : this.state.classroom.comments
             .map( comment => {
-                console.log(comment);
-                // let datenumber = parseInt(comment.created_at.replace( /\D+/g, ''));
-                let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
-                // let formatedCreated_at = Date(comment.created_at).slice(0,24);
-                console.log(this.state.classroom.comments)
+                // console.log(comment.created_at);
+                // let datenumber = parseInt(comment.created_at.replace( /\D+/g, ''));                
+                // let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
+                let formatedCreated_at = String(new Date(comment.created_at)).slice(0,24);
+                console.log(111, formatedCreated_at)
+                console.log(222, comment.created_at)
+
                 return (
                     <div className="comment" key={comment._id}>
                         <div className="card">
@@ -110,11 +112,41 @@ class SingleClassRoom extends Component {
                                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right">
                                     edit
                                 </Link>
+
+                               {/*response to comment form */}
+                               <div className="row comment_form">
+                    <form className="col s12" onSubmit={ this.onFormSubmit }>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <textarea cols="40" rows="10" onInput={this.handleCommentForm}
+                                value={this.state.newComment}
+                                placeholder="Write your message!"
+                                id="comment"
+                                type="text"
+                                className="validate" required/>
+                            </div>
+                        </div>
+                        <button 
+                            className="commentNewButton btn-flat btn-small waves-effect waves-light blue accent-1 right" 
+                            type="submit" 
+                            name="action">
+                            New Message
+                        </button>
+                    </form>
+                </div>
+
+
+
+
+
+
                                 <button  
                                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
                                     onClick={()=>this.replyComment(comment._id)}>
                                     reply
                                 </button>
+
+                               {/* response to comment form */}
                             </div>
                         </div>
                     </div>
