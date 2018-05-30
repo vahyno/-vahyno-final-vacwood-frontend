@@ -1,7 +1,13 @@
 .comment_form {
-    margin-top: 2%;
+    /* margin-top: 2%; */
     width: 80%;
+    padding-top: 6%;
   }  
+
+.comment_response_form {
+    margin-top: 2%;
+    width: 50%;
+}
 
 .singleClassroomImg {
     width: 50%;
@@ -16,6 +22,11 @@
 .commentNewButton {
     padding: 0 1%;
     margin: -3% 0 2% 0.2%
+}
+
+.commentReplyButton {
+    /* padding: 0 1%; */
+    margin: 5% 0 2% 0.2%   
 }
 
 .created_at {

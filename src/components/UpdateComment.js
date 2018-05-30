@@ -80,9 +80,9 @@ class UpdateComment extends Component {
         // let comment = this.state.comments ? this.state.comments : "Loading";
         return (
             <div className="view-fix blue lighten-4">
-                <Header/>
+                {/* <Header/> */}
                 {/* comment form */}
-                <div className="row comment_form center-align">
+                <div className="row comment_form center-align" style={{marginBottom: '0'}}>
                     <form className="col s12" onSubmit={ this.onFormSubmit }>
                         <div className="row">
                             <div className="input-field col s6">
@@ -108,7 +108,7 @@ class UpdateComment extends Component {
                     </form>
                 </div>
                 {/* end of comment form */}
-                <Footer/>
+                {/* <Footer/> */}
             </div>
         )
     }

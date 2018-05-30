@@ -1,6 +1,7 @@
 .allclassrooms {
     width: 30%;
-    margin-top: 1em;
+    /* margin-top: 1em; */
+    padding-top: 1em;
   }
 
 .center-cols > .col {

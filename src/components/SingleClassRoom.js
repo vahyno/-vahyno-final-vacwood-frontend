@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ClassRoomsModel from '../models/ClassRoomsModel';
+// import Comment from './Comment';
 import '../styles/singleClassroom.css';
-import Header from './Header';
-import Footer from './Footer';
+// import Header from './Header';
+// import Footer from './Footer';
 
 
 class SingleClassRoom extends Component {
     state = {
         classroom: null,
         newComment: '',
+        responseToComment: '',
+        showReplyForm: false,
     }
 
     componentDidMount() {
@@ -54,18 +57,13 @@ class SingleClassRoom extends Component {
         }      
     } 
 
-    replyComment = (comment_id) => {
-        console.log(comment_id);
-    }
-
     handleCommentForm = (event) => {
         let newComment = event.target.value;
         this.setState({
             newComment,
         })
-        console.log(newComment);
+        console.log('handleCommentForm => newComment', newComment);
     }
-
     onFormSubmit = (event) => {
         event.preventDefault();
         let classroomId = this.props.match.params.classroom_id;
@@ -83,6 +81,25 @@ class SingleClassRoom extends Component {
         // console.log(this.state)
     }
 
+    handleResponseCommentForm = (event, commentID) => {
+        console.log("Input ID", event.target.id);
+        // if(commentID ===)
+        let responseToComment = event.target.value;
+        // this.setState({
+        //     responseToComment,
+        // });
+        this.setState({
+            [event.target.id]: event.target.value,
+        });
+        console.log(responseToComment);
+    }
+
+    replyComment = () => {
+        // console.log(commentID);
+        this.setState({
+            showReplyForm: !this.state.showReplyForm
+        })
+    }
 
     render(){
         let singleClassroom = this.state.classroom === null ? <h2>Loading...</h2> : this.state.classroom
@@ -90,6 +107,7 @@ class SingleClassRoom extends Component {
 
         let classroomComments = this.state.classroom === null ? null : this.state.classroom.comments
             .map( comment => {
+                let test = this.state['comment._id']
                 // console.log(comment.created_at);
                 // let datenumber = parseInt(comment.created_at.replace( /\D+/g, ''));                
                 // let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
@@ -107,45 +125,39 @@ class SingleClassRoom extends Component {
                                     onClick={()=>this.deleteComment(comment._id)}>
                                     X
                                 </button>
+                                <button  
+                                    className="commentButton btn-flat btn-small waves-effect waves-light red right"
+                                    onClick={()=>this.replyComment(comment._id)}>
+                                    Reply to Comment
+                                </button>
                                 <Link
                                     to ={{pathname: `/classrooms/${singleClassroom._id}/comments/${comment._id}/update`, state: {oldFormData: this.state.classroom}}}  
                                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right">
                                     edit
                                 </Link>
 
+                               {/* COMMENT REPLY WAS HERE */}
                                {/*response to comment form */}
-                               <div className="row comment_form">
-                    <form className="col s12" onSubmit={ this.onFormSubmit }>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <textarea cols="40" rows="10" onInput={this.handleCommentForm}
-                                value={this.state.newComment}
-                                placeholder="Write your message!"
-                                id="comment"
-                                type="text"
-                                className="validate" required/>
-                            </div>
-                        </div>
-                        <button 
-                            className="commentNewButton btn-flat btn-small waves-effect waves-light blue accent-1 right" 
-                            type="submit" 
-                            name="action">
-                            New Message
-                        </button>
-                    </form>
-                </div>
-
-
-
-
-
-
-                                <button  
-                                    className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
-                                    onClick={()=>this.replyComment(comment._id)}>
-                                    reply
-                                </button>
-
+                               <div className="row comment_response_form" style={{ display:  this.state.showReplyForm ? 'block' : 'none'}}>
+                                    <form id={comment._id} className="col s12" onSubmit={(e)=>this.replyComment(comment._id)}>
+                                        <div className="row">
+                                            <div className="input-field col s6">
+                                                <input id={comment._id} onInput={(e) => this.handleResponseCommentForm(e, comment._id)}
+                                                value={test}
+                                                placeholder="Write your response!"
+                                
+                                                type="text"
+                                                className="validate" required/>
+                                            </div>
+                                            <button  
+                                                className="commentReplyButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
+                                                type="submit" 
+                                                name="action">
+                                                reply
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                                {/* response to comment form */}
                             </div>
                         </div>
@@ -155,7 +167,7 @@ class SingleClassRoom extends Component {
 
         return (
             <div className="blue lighten-5">
-                <Header/>
+                {/*<Header/>*/}
                 <Link 
                     to ={{pathname: `/classrooms/${singleClassroom._id}/update`, state: {oldFormData: this.state.classroom}}} 
                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right">
@@ -201,7 +213,7 @@ class SingleClassRoom extends Component {
 
                 { classroomComments }               
 
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         )
     }
