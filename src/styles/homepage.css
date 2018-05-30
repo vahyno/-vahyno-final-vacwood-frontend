@@ -1,29 +1,35 @@
 .home {
     background-image: url('../imgs/bus.jpg');
-    background-size:     cover;
+    background-size: cover;
     background-repeat:   no-repeat;
     background-position: center center;
     padding-top: 100px;
-    color: silver;
-    font-family: sans-serif;
-    letter-spacing: .35em;
-    font-size: 8em;
     height: 100vh;
   }
   
-  .home_text {
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
-  
-  .home h1{
-    font-size: 0.7em;
-    font-weight: 900;
-    margin-top: -5%;
-  }
-  
-  .home h5{
-    font-size: 0.4em;
-    font-weight: 900;
-    color: red;
+.home_text {
+  /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+}
 
-  }
+.home h1{
+  font-family: 'Abril Fatface', serif;
+  font-size: 6em; 
+  font-weight: 900;
+  margin-top: -5%;
+}
+
+.home h5{
+  font-family: 'Helvetica', serif;
+  font-size: 3em;
+  font-weight: 700;
+  margin-left: 25%;
+}
+
+.alternate-option {
+  margin-left: 1%;
+  margin-top: .5%;
+}
+
+/* h1, h2, h3, h4, h5, h6 {
+  font-family: 'Abril Fatface', serif;
+ } */

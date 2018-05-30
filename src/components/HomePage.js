@@ -8,9 +8,11 @@ class HomePage extends Component {
 		return (
             <div className='container-fluid home'>
                 <div className="center-align">
-                    <h1 className="home_text">VacWood School Community</h1>
-                    <h5 className="home_text">A Place for Teachers and Families to Connect</h5>
-                    <Link to='/classrooms' className='waves-effect waves-light blue btn-large'>Enter</Link>
+                    <h1 className="center-align home_text">Vacwood School Community</h1>
+                    <div className="valign-wrapper">
+                        <h5 className="home_text"> Connecting Teachers and Families</h5>
+                        <Link to='/classrooms' className='alternate-option waves-effect waves-light blue btn-small'>Enter</Link>
+                    </div>
                 </div>
             </div>
         )

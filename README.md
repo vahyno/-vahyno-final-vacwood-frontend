@@ -32,9 +32,9 @@
   Michal https://github.com/vahyno
 
   app on Heroku:
-    "backend: "
+    "backend: https://vacwood-backend.herokuapp.com/"
 
-    "frontend: "
+    "frontend: https://vacwood-frontend.herokuapp.com/"
 
 
 ## Thanks to:
