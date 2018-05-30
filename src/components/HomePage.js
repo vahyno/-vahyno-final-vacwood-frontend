@@ -10,7 +10,7 @@ class HomePage extends Component {
                 <div className="center-align">
                     <h1 className="center-align home_text">Vacwood School Community</h1>
                     <div className="valign-wrapper">
-                        <h5 className="home_text"> Connecting Teachers and Families</h5>
+                        <h5 className="home_text">Connecting Teachers and Families</h5>
                         <Link to='/classrooms' className='alternate-option waves-effect waves-light blue btn-small'>Enter</Link>
                     </div>
                 </div>
