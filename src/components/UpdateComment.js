@@ -79,7 +79,7 @@ class UpdateComment extends Component {
         console.log('Render => Classroom ID: ',classroomId);
         // let comment = this.state.comments ? this.state.comments : "Loading";
         return (
-            <div>
+            <div className="view-fix blue lighten-4">
                 <Header/>
                 {/* comment form */}
                 <div className="row comment_form center-align">

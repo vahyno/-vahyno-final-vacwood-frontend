@@ -99,6 +99,7 @@ class SingleClassRoom extends Component {
                 console.log(comment);
                 // let datenumber = parseInt(comment.created_at.replace( /\D+/g, ''));
                 let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
+                console.log(this.state.classroom.comments)
                 return (
                     <div className="comment" key={comment._id}>
                         <div className="card">
@@ -126,7 +127,7 @@ class SingleClassRoom extends Component {
             })
 
         return (
-            <div>
+            <div className="blue lighten-5">
                 <Header/>
                 <Link 
                     to ={{pathname: `/classrooms/${singleClassroom._id}/update`, state: {oldFormData: this.state.classroom}}} 
@@ -146,8 +147,6 @@ class SingleClassRoom extends Component {
                 <img src={ singleClassroom.image_url } alt={singleClassroom.title} className="hoverable singleClassroomImg"/>
                 </Link>
                 <br/>
-
-
 
                 {/* comment form */}
                 <div className="row comment_form">
@@ -170,8 +169,7 @@ class SingleClassRoom extends Component {
                         </button>
                     </form>
                 </div>
-
-
+                
                 {/* end of comment form */}
 
                 { classroomComments }               

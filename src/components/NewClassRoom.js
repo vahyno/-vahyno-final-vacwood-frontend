@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import ClassRoomsModel from '../models/ClassRoomsModel';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 
+const defaultImg = 'http://blueorangegames.com/blog/wp-content/uploads/2015/11/Kindergarten-Classroom_3.jpg';
 
 class NewClassRoom extends Component {
     state = {
         title: '',
         teacher: '',
         info: '',
-        image_url: `http://blueorangegames.com/blog/wp-content/uploads/2015/11/Kindergarten-Classroom_3.jpg`,
+        image_url: defaultImg,
     }
 
     handleInputChange = (e) => {
@@ -21,6 +23,20 @@ class NewClassRoom extends Component {
         })
         // console.log('state', this.state)
     }
+
+    handleURLChange = (e) => {
+        console.log('event', e)
+        console.log('target', e.target)
+        // check if state url is original value. if yes, delete.
+        if (this.state.image_url === defaultImg) {
+            this.setState({image_url: ''});
+        } else {
+        this.setState({
+            image_url: e.target.value
+        })
+        }
+    }
+
 
     onFormSubmit = (e) => {
         e.preventDefault();
@@ -44,7 +60,7 @@ class NewClassRoom extends Component {
 
     render(){
         return (
-            <div>
+            <div className="blue lighten-5">
                 <Header/>
                 <div className="column newformclass center-align">
                     <form className="col s12" onSubmit={this.onFormSubmit}>
@@ -58,9 +74,30 @@ class NewClassRoom extends Component {
                             <textarea cols="40" rows="10" onChange={ this.handleInputChange } name="info" value={this.state.info} placeholder="Additional information" className="textarea validate" id="info"></textarea>
                         </div>
                         <div className="input-field col s12">
-                            <input onChange={ this.handleInputChange } name="image_url" value={this.state.image_url} placeholder="Add image url" id="image" type="text" className="validate" required/>
+                            {/*<input onChange={ this.handleInputChange } name="image_url" value={this.state.image_url} placeholder="Add image url" id="image" type="text" className="validate" required/>*/}
+                            <input 
+                                onFocus={ this.handleURLChange } 
+                                onChange={this.handleURLChange}
+                                name="image_url" 
+                                value={this.state.image_url} 
+                                placeholder="Add image url" 
+                                id="image" 
+                                type="text" 
+                                className="validate" 
+                                required/>
                         </div>
-                        <button className="waves-effect waves-light blue lighten-2 btn" type="submit" name="action">Create New Classroom</button>
+                        <Link
+                            to ={`/classrooms`} 
+                            className="commentButton waves-effect waves-light blue lighten-3 btn update-button">
+                            Cancel
+                        </Link>
+                        <button 
+                            className="waves-effect waves-light blue lighten-2 btn" 
+                            type="submit" 
+                            name="action">
+                            Create New Classroom
+                        </button>
+
                     </form>
                 </div>
                 <Footer/>

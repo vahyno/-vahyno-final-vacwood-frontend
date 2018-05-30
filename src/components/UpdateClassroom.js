@@ -71,7 +71,7 @@ class UpdateClassroom extends Component {
     render(){
         let classroomId = this.props.match.params.classroom_id;
         return (
-            <div>
+            <div className="view-fix blue lighten-4">
                 <Header/>
 
                 {/* classroom form */}
@@ -90,7 +90,8 @@ class UpdateClassroom extends Component {
                             <input onChange={ this.handleInputChange } name="image_url" value={this.state.image_url} placeholder="Add image url" id="image" type="text" className="validate" required/>
                         </div>
                         <Link
-                            to ={`/classrooms/${classroomId}`} className="commentButton waves-effect waves-light blue lighten-3 btn update-button">
+                            to ={`/classrooms/${classroomId}`} 
+                            className="commentButton waves-effect waves-light blue lighten-3 btn update-button">
                             Cancel
                         </Link>
                         <button 
