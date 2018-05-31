@@ -95,9 +95,9 @@ class SingleClassRoom extends Component {
 
     replyComment = () => {
         // console.log(commentID);
-        this.setState({
-            showReplyForm: !this.state.showReplyForm
-        })
+        // this.setState({
+        //     showReplyForm: !this.state.showReplyForm
+        // })
     }
 
     submitReplyComment = (event, commentID) => {

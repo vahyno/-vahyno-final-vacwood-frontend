@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ClassRoomsModel from '../models/ClassRoomsModel';
+import {Row, Input} from 'react-materialize';
 import '../styles/singleClassroom.css';
 import Header from './Header';
 import Footer from './Footer';
@@ -77,9 +78,20 @@ class UpdateClassroom extends Component {
                 {/* classroom form */}
                 <div className="column updateClassroomFormContainer center-align">
                     <form className="col s12" onSubmit={this.onFormSubmit}>
-                        <div className="input-field col s12">
+                       {/* <div className="input-field col s12">
                             <input onChange={ this.handleInputChange } name="title" value={this.state.title} placeholder="Title" id="title" type="text" className="validate" required/>
-                        </div>
+                        </div> */}
+                        <Row className="input-field col s12">
+                            <Input name="title" onChange={ this.handleInputChange } s={12} type='select' label="Classroom" defaultValue={ this.state.title }>
+                                <option onChange={ this.handleInputChange } value='Kindergarten'>{this.state.title}</option>
+                                <option onChange={ this.handleInputChange } value='Kindergarten'>Kindergarten</option>
+                                <option onChange={ this.handleInputChange } value='1st Grade'>1st Grade</option>
+                                <option onChange={ this.handleInputChange } value='2nd Grade'>2nd Grade</option>
+                                <option onChange={ this.handleInputChange } value='3rd Grade'>3rd Grade</option>
+                                <option onChange={ this.handleInputChange } value='4th Grade'>4th Grade</option>
+                                <option onChange={ this.handleInputChange } value='5th Grade'>5th Grade</option>
+                            </Input>
+                        </Row>
                         <div className="input-field col s12">
                             <input onChange={ this.handleInputChange } name="teacher" value={this.state.teacher} placeholder="Teacher's name" id="teacher" type="text" className="validate" required/>
                         </div>
