@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 import ClassRoomsModel from '../models/ClassRoomsModel';
 import '../styles/classrooms.css';
+import Header from './Header';
+import Footer from './Footer';
+
 
 class ClassRooms extends Component {
 
@@ -44,10 +47,14 @@ class ClassRooms extends Component {
             }); 
 
         return (
-            <div className="blue accent-1">
+            <div>
+            <Header/>
+            <div className="allClassroomsContainer blue accent-1">
                 <div className="row center-cols center-align">
                  { results } 
                 </div>
+            </div>
+            <Footer/>
             </div>
         )
     }

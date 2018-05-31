@@ -1,3 +1,9 @@
+.allClassroomsContainer {
+    min-height: 80vh;
+    margin-bottom: -5%;
+    padding-bottom: 5%;
+}
+
 .allclassrooms {
     width: 30%;
     /* margin-top: 1em; */
@@ -9,3 +15,7 @@
     display: inline-block; /* make blocks inline-block */
     text-align: initial; /* restore text-align to default */
 } 
+
+.card {
+    margin-bottom: 0;
+}

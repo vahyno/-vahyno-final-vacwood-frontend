@@ -5,7 +5,8 @@ body {
   flex-direction: column;
 }
 
-main {
+/* main {
   flex: 1 0 auto;
   min-height: 70vh;
-}
+  margin-bottom: -6%;
+} */

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import ClassRoomsModel from '../models/ClassRoomsModel';
 // import Comment from './Comment';
 import '../styles/singleClassroom.css';
-// import Header from './Header';
-// import Footer from './Footer';
+import Header from './Header';
+import Footer from './Footer';
 
 
 class SingleClassRoom extends Component {
@@ -118,7 +118,7 @@ class SingleClassRoom extends Component {
                 // let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
                 let formatedCreated_at = String(new Date(comment.created_at)).slice(0,24);
                 return (
-                    <div className="comment" key={comment._id}>
+                    <div className="commentContainer" key={comment._id}>
                         <div className="card">
                             <div className="created_at">{ formatedCreated_at }</div>
                             <div className="card-body">{ comment.content }
@@ -186,9 +186,9 @@ class SingleClassRoom extends Component {
         console.log("CLASSROOMCOMMENTREPLIES", classroomCommentReplies);
 
         return (
-            <div className="blue lighten-5">
-            { classroomCommentReplies }
-                {/*<Header/>*/}
+            <div className="blue lighten-5" >
+                <Header/>
+                <div className="singleClassroomContainer">
                 <Link 
                     to ={{pathname: `/classrooms/${singleClassroom._id}/update`, state: {oldFormData: this.state.classroom}}} 
                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right">
@@ -201,12 +201,13 @@ class SingleClassRoom extends Component {
                 </button>
 
                 <br/>
-                <h4 className="center-align"> { singleClassroom.title } </h4>
-                <h4 className="center-align">teacher: { singleClassroom.teacher } </h4>
-                <Link to ={`/classrooms`} className="col s12 m7">
-                <img src={ singleClassroom.image_url } alt={singleClassroom.title} className="hoverable singleClassroomImg"/>
-                </Link>
-                <br/>
+                <div className="center-align">
+                    <h4 className="center-align"> { singleClassroom.title }{`  -  `}teacher: { singleClassroom.teacher } </h4>
+                   {/* <h4 className="center-align">teacher: { singleClassroom.teacher } </h4> */}
+                    <Link to ={`/classrooms`} className="col s12 m7">
+                    <img src={ singleClassroom.image_url } alt={singleClassroom.title} className="hoverable singleClassroomImg"/>
+                    </Link>
+                </div>
 
                 {/* comment form */}
                 <div className="row comment_form">
@@ -228,15 +229,15 @@ class SingleClassRoom extends Component {
                             New Message
                         </button>
                     </form>
-                    
+                    { classroomCommentReplies }
                 </div>
 
                 {/* end of comment form */}
 
                 { classroomComments }
                          
-
-                {/*<Footer/>*/}
+                </div>
+                <Footer/>
             </div>
         )
     }

@@ -1,7 +1,15 @@
+.singleClassroomContainer{
+    padding-bottom: 1%; 
+}
+
+.commentContainer {
+    margin: -1% 15% 2% 15%;
+    width: 70%;
+}
+
 .comment_form {
-    /* margin-top: 2%; */
+    margin-top: 1%;
     width: 80%;
-    padding-top: 6%;
   }  
 
 .comment_response_form {
@@ -10,8 +18,7 @@
 }
 
 .singleClassroomImg {
-    width: 50%;
-    margin-left: 25%;
+    width: 45%;
 }
 
 .commentButton {
@@ -35,10 +42,6 @@
     font-weight: 600;
 }
 
-.comment {
-    margin: 0 5%;
-}
-
 .textarea {
 	height: 9em;
 }
@@ -46,3 +49,31 @@
 textarea {
 	height: 4em;
 }
+
+/* new classroom */
+.newFormClassroom {
+    min-height: 80vh;
+    padding-top: 6%;
+    padding-bottom: 7%;
+}
+/* new classroom */
+
+/* update classroom */
+.updateClassroomFormContainer {
+    min-height: 80vh;
+    padding-top: 6%;
+    padding-bottom: 7%;
+}
+/* update classroom */
+
+/* update comment */
+.updateCommentContainer {
+    min-height: 80vh;
+    padding-top: 6%;
+    padding-bottom: 7%;
+}
+
+.updateCommentContainer textarea {
+	height: 15em;
+}
+/* update comment */

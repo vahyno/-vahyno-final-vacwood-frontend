@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ClassRoomsModel from '../models/ClassRoomsModel';
 import '../styles/singleClassroom.css';
-// import Header from './Header';
-// import Footer from './Footer';
+import Header from './Header';
+import Footer from './Footer';
 
 
 class UpdateClassroom extends Component {
@@ -71,11 +71,11 @@ class UpdateClassroom extends Component {
     render(){
         let classroomId = this.props.match.params.classroom_id;
         return (
-            <div className="view-fix blue lighten-4">
-                {/*<Header/>*/}
+            <div className="blue lighten-4">
+                <Header/>
 
                 {/* classroom form */}
-                <div className="column newformclass center-align">
+                <div className="column updateClassroomFormContainer center-align">
                     <form className="col s12" onSubmit={this.onFormSubmit}>
                         <div className="input-field col s12">
                             <input onChange={ this.handleInputChange } name="title" value={this.state.title} placeholder="Title" id="title" type="text" className="validate" required/>
@@ -107,7 +107,7 @@ class UpdateClassroom extends Component {
                 {/* classroom form */}
 
 
-                {/*<Footer/>*/}
+                <Footer/>
             </div>
         )
     }

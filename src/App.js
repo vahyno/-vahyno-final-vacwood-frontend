@@ -8,19 +8,19 @@ import NewClassRoom from './components/NewClassRoom';
 import SingleClassRoom from './components/SingleClassRoom';
 import UpdateComment from './components/UpdateComment';
 import UpdateClassroom from './components/UpdateClassroom';
-import Header from './components/Header';
-import Footer from './components/Footer';
+// import Header from './components/Header';
+// import Footer from './components/Footer';
 
 
 class App extends Component {
   render() {
     // let test = window.location.pathname;
-    let header = window.location.pathname === '/' ? '' : <Header />;
-    let footer = window.location.pathname === '/' ? '' : <Footer />;
+    // let header = window.location.pathname === '/' ? '' : <Header />;
+    // let footer = window.location.pathname === '/' ? '' : <Footer />;
     return (
-      <div>
-        { header }
-        <main className="App blue lighten-4">
+      <div className="App">
+        {/* header */}
+        {/*<main className="App blue lighten-4">*/}
         <Switch>
             <Route exact path='/' component={ HomePage } />
             <Route exact path='/classrooms' component={ ClassRooms } />
@@ -31,8 +31,8 @@ class App extends Component {
             <Route exact path='/classrooms/:classroom_id/comments/:comment_id/update' component={ UpdateComment } />
         </Switch>
         
-        </main>
-        { footer }
+        {/*</main>*/}
+        {/* footer*/}
       </div>
     );
   }
