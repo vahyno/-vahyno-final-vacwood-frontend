@@ -90,10 +90,10 @@ class SingleClassRoom extends Component {
 
         let classroomComments = this.state.classroom === null ? null : this.state.classroom.comments
             .map( comment => {
-                console.log(comment);
+                // console.log(comment);
                 // let datenumber = parseInt(comment.created_at.replace( /\D+/g, ''));
-                let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
-                // let formatedCreated_at = Date(comment.created_at).slice(0,24);
+                // let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
+                let formatedCreated_at = String(new Date(comment.created_at)).slice(0,24);
                 console.log(this.state.classroom.comments)
                 return (
                     <div className="comment" key={comment._id}>
