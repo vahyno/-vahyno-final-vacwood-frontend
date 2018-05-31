@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ClassRoomsModel from '../models/ClassRoomsModel';
 import '../styles/singleClassroom.css';
-import Header from './Header';
-import Footer from './Footer';
+// import Header from './Header';
+// import Footer from './Footer';
 
 
 class UpdateComment extends Component {

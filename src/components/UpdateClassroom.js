@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ClassRoomsModel from '../models/ClassRoomsModel';
 import '../styles/singleClassroom.css';
-import Header from './Header';
-import Footer from './Footer';
+// import Header from './Header';
+// import Footer from './Footer';
 
 
 class UpdateClassroom extends Component {
@@ -72,7 +72,7 @@ class UpdateClassroom extends Component {
         let classroomId = this.props.match.params.classroom_id;
         return (
             <div className="view-fix blue lighten-4">
-                <Header/>
+                {/*<Header/>*/}
 
                 {/* classroom form */}
                 <div className="column newformclass center-align">
@@ -107,7 +107,7 @@ class UpdateClassroom extends Component {
                 {/* classroom form */}
 
 
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         )
     }

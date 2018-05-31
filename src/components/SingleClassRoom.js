@@ -82,16 +82,12 @@ class SingleClassRoom extends Component {
     }
 
     handleResponseCommentForm = (event, commentID) => {
-        console.log("Input ID", event.target.id);
-        // if(commentID ===)
+        // console.log("Input ID", event.target.id);
         let responseToComment = event.target.value;
-        // this.setState({
-        //     responseToComment,
-        // });
         this.setState({
             [event.target.id]: event.target.value,
         });
-        console.log(responseToComment);
+        // console.log(responseToComment);
     }
 
     replyComment = () => {
@@ -101,20 +97,26 @@ class SingleClassRoom extends Component {
         })
     }
 
+    submitReplyComment = (event, commentID) => {
+        event.preventDefault();
+        let classroomId = this.props.match.params.classroom_id;
+        let commentContent = this.state[commentID];
+        console.log('submitReplyComment => classroomId: ', classroomId, 'commentID: ', commentID, 'commentContent: ', commentContent);
+        ClassRoomsModel.replyToComment(classroomId, commentID, commentContent)
+            .then(res => this.setState({classroom: res.data, commentContent: ''}));
+    }
+
     render(){
+        console.log("STATE ", this.state.classroom)
         let singleClassroom = this.state.classroom === null ? <h2>Loading...</h2> : this.state.classroom
         // console.log(this.state.classroom);
 
         let classroomComments = this.state.classroom === null ? null : this.state.classroom.comments
             .map( comment => {
                 let test = this.state['comment._id']
-                // console.log(comment.created_at);
                 // let datenumber = parseInt(comment.created_at.replace( /\D+/g, ''));                
                 // let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
                 let formatedCreated_at = String(new Date(comment.created_at)).slice(0,24);
-                console.log(111, formatedCreated_at)
-                console.log(222, comment.created_at)
-
                 return (
                     <div className="comment" key={comment._id}>
                         <div className="card">
@@ -126,20 +128,19 @@ class SingleClassRoom extends Component {
                                     X
                                 </button>
                                 <button  
-                                    className="commentButton btn-flat btn-small waves-effect waves-light red right"
+                                    className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
                                     onClick={()=>this.replyComment(comment._id)}>
-                                    Reply to Comment
+                                    Reply
                                 </button>
                                 <Link
                                     to ={{pathname: `/classrooms/${singleClassroom._id}/comments/${comment._id}/update`, state: {oldFormData: this.state.classroom}}}  
                                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right">
-                                    edit
+                                    Edit
                                 </Link>
 
-                               {/* COMMENT REPLY WAS HERE */}
                                {/*response to comment form */}
                                <div className="row comment_response_form" style={{ display:  this.state.showReplyForm ? 'block' : 'none'}}>
-                                    <form id={comment._id} className="col s12" onSubmit={(e)=>this.replyComment(comment._id)}>
+                                    <form id={comment._id} className="col s12" onSubmit={(event)=>this.submitReplyComment(event, comment._id)}>
                                         <div className="row">
                                             <div className="input-field col s6">
                                                 <input id={comment._id} onInput={(e) => this.handleResponseCommentForm(e, comment._id)}
@@ -153,7 +154,7 @@ class SingleClassRoom extends Component {
                                                 className="commentReplyButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
                                                 type="submit" 
                                                 name="action">
-                                                reply
+                                                Submit
                                             </button>
                                         </div>
                                     </form>
@@ -164,9 +165,29 @@ class SingleClassRoom extends Component {
                     </div>
                 )
             })
+        
+        let classroomCommentReplies;
+        if (this.state.classroom !== null) {
+            if(this.state.classroom.comments.length > 0) {
+                classroomCommentReplies = this.state.classroom === null ? '' : this.state.classroom.comments
+                    .map(commentArr => {
+                        console.log('Comment Arr', commentArr)
+                        if(commentArr.comments.length > 0) {
+                            commentArr.comments.map(comment => {
+                                return 'nope'
+                                // comment.content
+                                // console.log("CommentArr Comments ", comment)
+                            })
+                        }
+                        
+                    })
+            }
+        } 
+        console.log("CLASSROOMCOMMENTREPLIES", classroomCommentReplies);
 
         return (
             <div className="blue lighten-5">
+            { classroomCommentReplies }
                 {/*<Header/>*/}
                 <Link 
                     to ={{pathname: `/classrooms/${singleClassroom._id}/update`, state: {oldFormData: this.state.classroom}}} 
@@ -207,11 +228,13 @@ class SingleClassRoom extends Component {
                             New Message
                         </button>
                     </form>
+                    
                 </div>
 
                 {/* end of comment form */}
 
-                { classroomComments }               
+                { classroomComments }
+                         
 
                 {/*<Footer/>*/}
             </div>
