@@ -1,11 +1,24 @@
+.singleClassroomContainer{
+    padding-bottom: 1%; 
+}
+
+.commentContainer {
+    margin: -1% 15% 2% 15%;
+    width: 70%;
+}
+
 .comment_form {
-    margin-top: 2%;
+    margin-top: 1%;
     width: 80%;
   }  
 
-.singleClassroomImg {
+.comment_response_form {
+    margin-top: 2%;
     width: 50%;
-    margin-left: 25%;
+}
+
+.singleClassroomImg {
+    width: 45%;
 }
 
 .commentButton {
@@ -18,14 +31,15 @@
     margin: -3% 0 2% 0.2%
 }
 
+.commentReplyButton {
+    /* padding: 0 1%; */
+    margin: 5% 0 2% 0.2%   
+}
+
 .created_at {
     margin-left: 1.5%;
     padding-top: 1em;
     font-weight: 600;
-}
-
-.comment {
-    margin: 0 5%;
 }
 
 .textarea {
@@ -35,3 +49,31 @@
 textarea {
 	height: 4em;
 }
+
+/* new classroom */
+.newFormClassroom {
+    min-height: 80vh;
+    padding-top: 6%;
+    padding-bottom: 7%;
+}
+/* new classroom */
+
+/* update classroom */
+.updateClassroomFormContainer {
+    min-height: 80vh;
+    padding-top: 6%;
+    padding-bottom: 7%;
+}
+/* update classroom */
+
+/* update comment */
+.updateCommentContainer {
+    min-height: 80vh;
+    padding-top: 6%;
+    padding-bottom: 7%;
+}
+
+.updateCommentContainer textarea {
+	height: 15em;
+}
+/* update comment */

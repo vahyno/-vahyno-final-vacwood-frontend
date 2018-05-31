@@ -20,13 +20,20 @@ class UpdateComment extends Component {
         console.log('State passed through form: ', this.props.location.state.oldFormData);
         let oldFormData = this.props.location.state.oldFormData;
         console.log('old', oldFormData)
+        // let commentID = this.props.match.params.comment_id;
+        
+        let commentToUpdateArr = this.props.location.state.oldFormData.comments.filter(comment => {
+            return comment._id === this.props.match.params.comment_id
+        })
+        let commentToUpdate = commentToUpdateArr[0]
+        console.log("UPDATE : ", commentToUpdate)
         this.setState({
             title: oldFormData.title,
             teacher: oldFormData.teacher,
             info: oldFormData.info,
             image_url: oldFormData.image_url,
             comments: oldFormData.comments,
-            commentToUpdate: oldFormData.comments[0],
+            commentToUpdate,
         });
     }
 
@@ -44,6 +51,7 @@ class UpdateComment extends Component {
         event.preventDefault();
         console.log('onFormSubmit => Form Submit', event);
         let commentId = this.props.match.params.comment_id;
+        let classroomId = this.props.match.params.classroom_id;
         let updatedComment = this.state.commentToUpdate;
         let filteredComments = this.state.comments.filter(comment => {
             return comment._id !== commentId;
@@ -59,8 +67,7 @@ class UpdateComment extends Component {
             comments: updatedComments,
             commentToUpdate,
         }
-        console.log('onFormSubmit => Form Data ', formData)
-        let classroomId = this.props.match.params.classroom_id;
+        // console.log('onFormSubmit => Form Data ', formData)
         // let commentData = this.state.commentToUpdate;
         console.log('classroomId: ', classroomId, 'commentId: ', commentId);
         ClassRoomsModel.updateComment(classroomId, commentId, formData)
@@ -82,7 +89,7 @@ class UpdateComment extends Component {
             <div className="view-fix blue lighten-4">
                 <Header/>
                 {/* comment form */}
-                <div className="row comment_form center-align">
+                <div className="row comment_form updateCommentContainer center-align" style={{marginBottom: '0'}}>
                     <form className="col s12" onSubmit={ this.onFormSubmit }>
                         <div className="row">
                             <div className="input-field col s6">

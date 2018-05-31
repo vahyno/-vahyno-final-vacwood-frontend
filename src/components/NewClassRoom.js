@@ -62,8 +62,8 @@ class NewClassRoom extends Component {
     render(){
         return (
             <div className="blue lighten-5">
-                <Header/>
-                <div className="column newformclass center-align">
+                <Header/> 
+                <div className="column newFormClassroom center-align">
                     <form className="col s12" onSubmit={this.onFormSubmit}>
                         <div className="input-field col s12">
                             <input onChange={ this.handleInputChange } name="title" value={this.state.title} placeholder="Title" id="title" type="text" className="validate" required/>
@@ -98,7 +98,6 @@ class NewClassRoom extends Component {
                             name="action">
                             Create New Classroom
                         </button>
-
                     </form>
                 </div>
                 <Footer/>

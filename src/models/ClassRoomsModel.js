@@ -61,6 +61,20 @@ class ClassRoomsModel {
         // const request = axios.put(`https://vacwood-backend.herokuapp.com/${classroom_id}/comments/${comment_id}`, comment);
         return request;
     }
+
+    // reply to comment method:
+    static replyToComment = (classroom_id, comment_id, content) => {
+        // backend route:
+        // // app.post('/api/classrooms/:classroom_id/comments/:comment_id/comments', replyCommentsController.create);
+        const request = axios.post(`http://localhost:8080/api/classrooms/${classroom_id}/comments/${comment_id}/comments`, {content});
+        // //for heroku to deploy: 
+        // const request = axios.put(`https://vacwood-backend.herokuapp.com/${classroom_id}/comments/${comment_id}/comments`);
+        return request;
+    }
+
+    // backend route:
+    // app.get('/api/classrooms/:classroom_id/comments/:comment_id/comments/:replyComment_id', replyCommentsController.show);
+
 }
 
 export default ClassRoomsModel;
