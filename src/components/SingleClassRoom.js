@@ -22,6 +22,9 @@ class SingleClassRoom extends Component {
             console.log('Single Classroom by ID: ',data.data);
             this.setState({
                 classroom: data.data,
+                newComment: '',
+                responseToComment: '',
+                showReplyForm: false,
             });
         });
     }
@@ -113,12 +116,13 @@ class SingleClassRoom extends Component {
 
         let classroomComments = this.state.classroom === null ? null : this.state.classroom.comments
             .map( comment => {
-                let test = this.state['comment._id']
+                let test = this.state[comment._id]
+                let pureCommentId = this.state[comment._id]
                 // let datenumber = parseInt(comment.created_at.replace( /\D+/g, ''));                
                 // let formatedCreated_at = `${comment.created_at.slice(0,10)} at ${comment.created_at.slice(11,19)}`
                 let formatedCreated_at = String(new Date(comment.created_at)).slice(0,24);
                 return (
-                    <div className="commentContainer" key={comment._id}>
+                    <div className="commentContainer" key={ comment._id }>
                         <div className="card">
                             <div className="created_at">{ formatedCreated_at }</div>
                             <div className="card-body">{ comment.content }
@@ -167,23 +171,23 @@ class SingleClassRoom extends Component {
             })
         
         let classroomCommentReplies;
-        if (this.state.classroom !== null) {
-            if(this.state.classroom.comments.length > 0) {
-                classroomCommentReplies = this.state.classroom === null ? '' : this.state.classroom.comments
-                    .map(commentArr => {
-                        console.log('Comment Arr', commentArr)
-                        if(commentArr.comments.length > 0) {
-                            commentArr.comments.map(comment => {
-                                return 'nope'
-                                // comment.content
-                                // console.log("CommentArr Comments ", comment)
-                            })
-                        }
+        // if (this.state.classroom !== null) {
+        //     if(this.state.classroom.comments.length > 0) {
+        //         classroomCommentReplies = this.state.classroom === null ? '' : this.state.classroom.comments
+        //             .map(commentArr => {
+        //                 console.log('Comment Arr', commentArr)
+        //                 if(commentArr.comments.length > 0) {
+        //                     commentArr.comments.map(comment => {
+        //                         return 'nope'
+        //                         // comment.content
+        //                         // console.log("CommentArr Comments ", comment)
+        //                     })
+        //                 }
                         
-                    })
-            }
-        } 
-        console.log("CLASSROOMCOMMENTREPLIES", classroomCommentReplies);
+        //             })
+        //     }
+        // } 
+        // console.log("CLASSROOMCOMMENTREPLIES", classroomCommentReplies);
 
         return (
             <div className="blue lighten-5" >
