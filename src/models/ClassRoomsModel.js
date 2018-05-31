@@ -44,21 +44,21 @@ class ClassRoomsModel {
         // console.log('Axios classroom_id: ', classroom_id, 'content: ', content);
         // const request = axios.post(`http://localhost:8080/api/classrooms/${classroom_id}/comments`, {content: content});
         // // for heroku to deploy: 
-        const request = axios.post(`https://vacwood-backend.herokuapp.com/${classroom_id}/comments`, {content: content});
+        const request = axios.post(`https://vacwood-backend.herokuapp.com/api/classrooms/${classroom_id}/comments`, {content: content});
         return request;
     }
 
     static destroyComment = (classroom_id, comment_id) => {
         // const request = axios.delete(`http://localhost:8080/api/classrooms/${classroom_id}/comments/${comment_id}`);
         // // for heroku to deploy:
-        const request = axios.delete(`https://vacwood-backend.herokuapp.com/${classroom_id}/comments/${comment_id}`);
+        const request = axios.delete(`https://vacwood-backend.herokuapp.com/api/classrooms/${classroom_id}/comments/${comment_id}`);
         return request;
     }
 
     static updateComment = (classroom_id, comment_id, comment) => {
         // const request = axios.put(`http://localhost:8080/api/classrooms/${classroom_id}/comments/${comment_id}`, comment);
         // //for heroku to deploy: 
-        const request = axios.put(`https://vacwood-backend.herokuapp.com/${classroom_id}/comments/${comment_id}`, comment);
+        const request = axios.put(`https://vacwood-backend.herokuapp.com/api/classrooms/${classroom_id}/comments/${comment_id}`, comment);
         return request;
     }
 
