@@ -1,6 +1,6 @@
 # README
 
-# Project 3: VacWood School Community app - MERN stack
+# Project 3: Vacwood School Community app - MERN stack
 
 ### Description:
 * "A web app for Teachers and Families to Connect."
