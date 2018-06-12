@@ -4,7 +4,7 @@ import axios from 'axios';
 const _localRoute = "http://localhost:8080";
 const _herokuRoute= "https://vacwood-backend.herokuapp.com";
 
-let local = false; //change to false for heroku deployment
+let local = true; //change to false for heroku deployment
 const CURRENT = local ? _localRoute : _herokuRoute;
 // end of ( local || heroku deployment)
 
