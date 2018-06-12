@@ -130,11 +130,11 @@ class SingleClassRoom extends Component {
                                     onClick={()=>this.deleteComment(comment._id)}>
                                     X
                                 </button>
-                                <button  
+                                {/*<button  
                                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
                                     onClick={()=>this.replyComment(comment._id)}>
                                     Reply
-                                </button>
+                                </button>*/}
                                 <Link
                                     to ={{pathname: `/classrooms/${singleClassroom._id}/comments/${comment._id}/update`, state: {oldFormData: this.state.classroom}}}  
                                     className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right">

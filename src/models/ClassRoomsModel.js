@@ -4,8 +4,8 @@ import axios from 'axios';
 const _localRoute = "http://localhost:8080";
 const _herokuRoute= "https://vacwood-backend.herokuapp.com";
 
-let now = true;
-const CURRENT = now ? _localRoute : _herokuRoute;
+let local = false; //change to false for heroku deployment
+const CURRENT = local ? _localRoute : _herokuRoute;
 // end of ( local || heroku deployment)
 
 class ClassRoomsModel {
