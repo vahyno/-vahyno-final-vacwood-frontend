@@ -62,7 +62,7 @@ class Comment extends Component {
                     <div style={{marginTop:'3em'}}>
                         {repliesToComment && 
                             repliesToComment.map(reply => (
-                                <div className="commentContainer" key={reply._id}>
+                                <div key={reply._id}>
                                     <div className="card">
                                         <div className="created_at">{String(new Date(reply.created_at)).slice(0,24)}</div>
                                         <div className="card-body">{reply.content}</div>
