@@ -125,7 +125,6 @@ class SingleClassRoom extends Component {
                     <br/>
                     <div className="center-align">
                         <h4 className="center-align"> { singleClassroom.title }{`  -  `}teacher: { singleClassroom.teacher } </h4>
-                    {/* <h4 className="center-align">teacher: { singleClassroom.teacher } </h4> */}
                         <Link to ={`/classrooms`} className="col s12 m7">
                         <img src={ singleClassroom.image_url } alt={singleClassroom.title} className="hoverable singleClassroomImg"/>
                         </Link>

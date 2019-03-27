@@ -39,7 +39,6 @@ class ClassRooms extends Component {
                     } 
                 </div>
             </div>
-            Classrooms
             <Footer/>
             </div>
         )
