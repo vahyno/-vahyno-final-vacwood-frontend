@@ -8,6 +8,9 @@ let local = true; //change to false for heroku deployment
 const CURRENT = local ? _localRoute : _herokuRoute;
 // end of ( local || heroku deployment)
 
+// const request = axios.get(`http://localhost:8080/api/classrooms`);
+
+
 class ClassRoomsModel {
 
     static getAll = () => {

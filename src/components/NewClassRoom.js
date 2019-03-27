@@ -12,7 +12,7 @@ const defaultImg = 'https://kindercraze.com/wp-content/uploads/2015/10/vintage-c
 
 class NewClassRoom extends Component {
     state = {
-        title: '',
+        title: 'Kindergarten',
         teacher: '',
         info: '',
         image_url: defaultImg,
@@ -44,7 +44,7 @@ class NewClassRoom extends Component {
 
     onFormSubmit = (e) => {
         e.preventDefault();
-        // console.log('Form Submit');
+        console.log('Form Submit');
         let formData = {
             title: this.state.title,
             teacher: this.state.teacher,
