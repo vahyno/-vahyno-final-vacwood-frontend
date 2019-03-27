@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { handleInitialData } from '../actions/classroom';
+
 
 import ClassRoomsModel from '../models/ClassRoomsModel';
 import '../styles/classrooms.css';
@@ -8,48 +10,46 @@ import Header from './Header';
 import Footer from './Footer';
 import Classroom from './ClassRoom';
 
+import { connect } from 'react-redux';
 
 class ClassRooms extends Component {
 
-    state = {
-        results : null,
-    }
-
     componentDidMount() {
-        ClassRoomsModel.getAll()
-        .then(data => {
-            // console.log(data.data)
-            this.setState({
-                results: data.data
-            });
-        });
+        this.props.dispatch(handleInitialData());
     }
 
     render (){
 
-        const { results } = this.state;
-        // console.log('results', results)
+        // console.log('PROPS!!!!', this.props.classroomIDs)
+        const { classroomIDs } = this.props;
 
         return (
             <div>
             <Header/>
             <div className="allClassroomsContainer blue accent-1">
                 <div className="row center-cols center-align">
-                    { results !== null && (
-                        results.map((classroom) => (
-                            <div className="row allclassrooms card-action hoverable" key={classroom._id}>
-                                <Link to ={`/classrooms/${classroom._id}`} className="col s12 m7">
-                                    <Classroom classroom={classroom} /> 
+                    { classroomIDs.length && (
+                        classroomIDs.map((classID) => (
+                            <div className="row allclassrooms card-action hoverable" key={classID}>
+                                <Link to ={`/classrooms/${classID}`} className="col s12 m7">
+                                    <Classroom id={classID} /> 
                                 </Link>    
                             </div>
                         )))
                     } 
                 </div>
             </div>
+            Classrooms
             <Footer/>
             </div>
         )
     }
 }
 
-export default ClassRooms;
+function mapStateToProps({classrooms}) {
+    return {
+        classroomIDs: !classrooms.data ? [] : classrooms.data.map(classroom => classroom._id),
+    }
+}
+
+export default connect(mapStateToProps)(ClassRooms);
