@@ -6,9 +6,6 @@ const _herokuRoute= "https://vacwood-backend.herokuapp.com";
 
 let local = true; //change to false for heroku deployment
 const CURRENT = local ? _localRoute : _herokuRoute;
-// end of ( local || heroku deployment)
-
-// const request = axios.get(`http://localhost:8080/api/classrooms`);
 
 
 class ClassRoomsModel {
@@ -19,7 +16,7 @@ class ClassRoomsModel {
     }
 
     static createNew = (data) => {
-        console.log('axios createdata', data);
+        // console.log('axios createdata', data);
         const request = axios.post(`${CURRENT}/api/classrooms`, data);
         return request;
     }

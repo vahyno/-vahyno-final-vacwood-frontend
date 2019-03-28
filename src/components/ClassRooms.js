@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { handleInitialData } from '../actions/classroom';
+// import { handleInitialData } from '../actions/classroom';
 
 
-import ClassRoomsModel from '../models/ClassRoomsModel';
+// import ClassRoomsModel from '../models/ClassRoomsModel';
 import '../styles/classrooms.css';
 
 import Header from './Header';
@@ -13,14 +13,8 @@ import Classroom from './ClassRoom';
 import { connect } from 'react-redux';
 
 class ClassRooms extends Component {
-
-    componentDidMount() {
-        this.props.dispatch(handleInitialData());
-    }
-
     render (){
-
-        // console.log('PROPS!!!!', this.props.classroomIDs)
+        // console.log('PROPS!!!!', this.props)
         const { classroomIDs } = this.props;
 
         return (
@@ -47,7 +41,7 @@ class ClassRooms extends Component {
 
 function mapStateToProps({classrooms}) {
     return {
-        classroomIDs: !classrooms.data ? [] : classrooms.data.map(classroom => classroom._id),
+        classroomIDs: !classrooms ? [] : Object.keys(classrooms),
     }
 }
 

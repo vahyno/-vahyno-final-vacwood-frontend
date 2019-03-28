@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../App.css';
-
 import { connect } from 'react-redux';
+
+import { handleInitialData } from '../actions/classroom';
 
 import HomePage from './HomePage'
 import ClassRooms from './ClassRooms';
@@ -13,6 +14,10 @@ import UpdateClassroom from './UpdateClassroom';
 
 
 class App extends Component {
+  
+  componentDidMount() {
+    this.props.dispatch(handleInitialData());
+}
   render() {
     return (
       <Router>

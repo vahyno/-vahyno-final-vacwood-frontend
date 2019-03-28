@@ -5,8 +5,8 @@ import '../styles/classrooms.css';
 
 class ClassRoom extends Component {
     render() {
-        // console.log('INDIVIDUAL CLASS :', this.props.classroom[0])
-        const { title, teacher, image_url, info} = this.props.classroom[0]
+        // console.log('INDIVIDUAL CLASS :', this.props)
+        const { title, teacher, image_url, info} = this.props.classroom
         return (
             <div className="card">
                 <div className="card-image">
@@ -27,7 +27,7 @@ function mapStateToProps ({ classrooms }, { id }) {
     return {
         classroom: !classrooms 
             ? null
-            : classrooms.data.filter( classroom => id === classroom._id)
+            : classrooms[Object.keys(classrooms).filter( key => id === key)]
     }
 }
 
