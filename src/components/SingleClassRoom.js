@@ -54,15 +54,10 @@ class SingleClassRoom extends Component {
     }
 
     deleteClassroom = (classroom_id) => {
-        console.log("classroom_id: ", classroom_id); 
+        // console.log("classroom_id: ", classroom_id); 
         if (window.confirm('Are you sure you want to delete this Classroom?')) {
             const { dispatch } = this.props;
             dispatch(handleDeleteClassroom(classroom_id, this.props.history));
-            // ClassRoomsModel.destroyClassroom(classroom_id)
-            //   .then(deleted_classroom=>{
-            //     console.log(deleted_classroom);
-            //     this.props.history.push('/classrooms');
-            //   });
         }      
     } 
 
@@ -149,7 +144,7 @@ class SingleClassRoom extends Component {
 
 export default withRouter(connect()(SingleClassRoom));
 
-
+// //OLD comment props
 // commentsData={this.state.classroom}
 // deleteComment={this.deleteComment}
 // replyComment={this.replyComment}
