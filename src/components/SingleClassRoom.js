@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { handleDeleteClassroom } from '../actions/classroom';
 import ClassRoomsModel from '../models/ClassRoomsModel';
 import Comments from './Comments';
 
@@ -13,7 +15,7 @@ import MessageForm from './MessageForm';
 class SingleClassRoom extends Component {
     
     state = {
-        classroom: null,
+        classroom: '',
         newComment: '',
         responseToComment: '',
     }
@@ -54,37 +56,39 @@ class SingleClassRoom extends Component {
     deleteClassroom = (classroom_id) => {
         console.log("classroom_id: ", classroom_id); 
         if (window.confirm('Are you sure you want to delete this Classroom?')) {
-            ClassRoomsModel.destroyClassroom(classroom_id)
-              .then(deleted_classroom=>{
-                console.log(deleted_classroom);
-                this.props.history.push('/classrooms');
-              });
+            const { dispatch } = this.props;
+            dispatch(handleDeleteClassroom(classroom_id, this.props.history));
+            // ClassRoomsModel.destroyClassroom(classroom_id)
+            //   .then(deleted_classroom=>{
+            //     console.log(deleted_classroom);
+            //     this.props.history.push('/classrooms');
+            //   });
         }      
     } 
 
-    handleCommentForm = (event) => {
-        let newComment = event.target.value;
-        this.setState({
-            newComment,
-        })
-        console.log('handleCommentForm => newComment', newComment);
-    }
-    onFormSubmit = (event) => {
-        event.preventDefault();
-        let classroomId = this.props.match.params.classroom_id;
-        let commentContent = this.state.newComment;
-        ClassRoomsModel.newComment(classroomId, commentContent)
-        .then(newComment => {
-            this.setState({
-                classroom: {
-                    ...this.state.classroom,
-                    comments: this.state.classroom.comments.concat(newComment.data),
-                },
-                newComment: '',
-            });
-        });
-        // console.log(this.state)
-    }
+    // handleCommentForm = (event) => {
+    //     let newComment = event.target.value;
+    //     this.setState({
+    //         newComment,
+    //     })
+    //     console.log('handleCommentForm => newComment', newComment);
+    // }
+    // onFormSubmit = (event) => {
+    //     event.preventDefault();
+    //     let classroomId = this.props.match.params.classroom_id;
+    //     let commentContent = this.state.newComment;
+    //     ClassRoomsModel.newComment(classroomId, commentContent)
+    //     .then(newComment => {
+    //         this.setState({
+    //             classroom: {
+    //                 ...this.state.classroom,
+    //                 comments: this.state.classroom.comments.concat(newComment.data),
+    //             },
+    //             newComment: '',
+    //         });
+    //     });
+    //     // console.log(this.state)
+    // }
 
     handleResponseCommentForm = (event, commentID) => {
         console.log("handleResponseCommentForm - Input ID: ", event.target.id);
@@ -106,7 +110,8 @@ class SingleClassRoom extends Component {
 
     render(){
         console.log("Single Classroom STATE: ", this.state.classroom)
-        const singleClassroom = this.state.classroom === null ? <h2>Loading...</h2> : this.state.classroom
+        const singleClassroom = this.state.classroom === '' ? <h2>Loading...</h2> : this.state.classroom
+        const classroomId = this.props.match.params.classroom_id;
         
         return (
             <div className="blue lighten-5" >
@@ -129,18 +134,12 @@ class SingleClassRoom extends Component {
                         <img src={ singleClassroom.image_url } alt={singleClassroom.title} className="hoverable singleClassroomImg"/>
                         </Link>
                     </div>
-                    <MessageForm 
-                        onSubmit={ this.onFormSubmit }
-                        handleCommentForm={this.handleCommentForm}
-                        newComment={this.state.newComment}/>
-                    <Comments 
-                        commentsData={this.state.classroom}
-                        deleteComment={this.deleteComment}
-                        replyComment={this.replyComment}
-                        showReplyForm={this.state.showReplyForm}
-                        responseToComment={this.state.responseToComment}
-                        handleResponseCommentForm={this.handleResponseCommentForm}
-                        submitReplyComment={this.submitReplyComment}/>
+                    <MessageForm
+                        classroomId={ classroomId } 
+                    />
+                    <Comments
+                        classroomId={ classroomId } 
+                    />
                 </div>
                 <Footer/>
             </div>
@@ -148,4 +147,13 @@ class SingleClassRoom extends Component {
     }
 }
 
-export default SingleClassRoom;
+export default withRouter(connect()(SingleClassRoom));
+
+
+// commentsData={this.state.classroom}
+// deleteComment={this.deleteComment}
+// replyComment={this.replyComment}
+// showReplyForm={this.state.showReplyForm}
+// responseToComment={this.state.responseToComment}
+// handleResponseCommentForm={this.handleResponseCommentForm}
+// submitReplyComment={this.submitReplyComment} /> 
