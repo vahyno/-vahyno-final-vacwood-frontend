@@ -16,7 +16,6 @@ class ClassRoomsModel {
     }
 
     static createNew = (data) => {
-        // console.log('axios createdata', data);
         const request = axios.post(`${CURRENT}/api/classrooms`, data);
         return request;
     }
@@ -33,6 +32,7 @@ class ClassRoomsModel {
 
     static destroyClassroom = (classroom_id) => {
         const request = axios.delete(`${CURRENT}/api/classrooms/${classroom_id}`);
+        console.log('AXIOS DESTROY', request);
         return request;
     }
 
