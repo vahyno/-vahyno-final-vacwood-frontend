@@ -59,7 +59,6 @@ class UpdateClassroom extends Component {
         const  classroomId = this.props.match.params.classroom_id;
         return (
             <div className="blue lighten-4">
-            {JSON.stringify(this.props.classroomData)}
                 <Header/>
 
                 {/* classroom form */}

@@ -113,7 +113,7 @@ class SingleClassRoom extends Component {
                 <Header/>
                 <div className="singleClassroomContainer">
                     <Link 
-                        to ={{pathname: `/classrooms/${singleClassroom._id}/update`, state: {oldFormData: this.state.classroom}}} 
+                        to ={{pathname: `/classrooms/${singleClassroom._id}/update`}} 
                         className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right">
                         Update Classroom
                     </Link>
