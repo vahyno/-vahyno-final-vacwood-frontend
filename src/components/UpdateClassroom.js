@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleUpdateClassroom } from '../actions/classroom';
-// import ClassRoomsModel from '../models/ClassRoomsModel';
 import {Row, Input} from 'react-materialize';
 import '../styles/singleClassroom.css';
 import Header from './Header';
@@ -21,19 +20,14 @@ class UpdateClassroom extends Component {
     }
 
     componentDidMount() {
-        // console.log('State passed through form: ', this.props.location.state.oldFormData)
-        // let oldFormData = this.props.location.state.oldFormData;
         const { classroomData } = this.props;
-        console.log('CLASSROOM DATA: ', classroomData);
-        // classroomData !== null
-             this.setState({
-                title: classroomData.title,
-                teacher: classroomData.teacher,
-                info: classroomData.info,
-                image_url: classroomData.image_url,
-                comments: classroomData.comments,
-                })
-            // : null;
+        this.setState(()=> ({
+            title: classroomData.title,
+            teacher: classroomData.teacher,
+            info: classroomData.info,
+            image_url: classroomData.image_url,
+            comments: classroomData.comments,
+        }))
     }
 
     handleInputChange = (event) => {
@@ -48,36 +42,18 @@ class UpdateClassroom extends Component {
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        // console.log('Form Submit', event);
+        const { title, teacher, info, image_url, comments } = this.state;
         let formData = {
-            title: this.state.title,
-            teacher: this.state.teacher,
-            info: this.state.info,
-            image_url: this.state.image_url,
-            comments: this.state.comments,
+            title,
+            teacher,
+            info,
+            image_url,
+            comments,
         }
-        // let classroomId = this.props.match.params.classroom_id;
-        // console.log('Form Data ', formData)
-
         const { dispatch, classroom_id, history } = this.props;
         dispatch(handleUpdateClassroom(classroom_id, formData, history));
-
-        // ClassRoomsModel.editClassroom(classroomId, formData)
-        // .then(data => {
-        //     console.log(data.data);
-        //     this.setState({
-        //         // classroom: data.data
-        //             title: data.data.title,
-        //             teacher: data.data.teacher,
-        //             info: data.data.info,
-        //             image_url: data.data.image_url,
-        //             comments: data.data.comments
-        //     });
-        //     this.props.history.push(`/classrooms/${classroomId}`);
-        // });
     }
        
-
 
     render(){
         const  classroomId = this.props.match.params.classroom_id;
@@ -128,7 +104,6 @@ class UpdateClassroom extends Component {
                 </div>
                 
                 {/* classroom form */}
-
 
                 <Footer/>
             </div>
