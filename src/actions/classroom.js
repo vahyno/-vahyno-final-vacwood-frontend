@@ -6,12 +6,14 @@ export const RECEIVE_CLASSROOMS = 'RECEIVE_CLASSROOMS';
 export const ADD_CLASSROOM = 'ADD_CLASSROOM';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_CLASSROOM = 'DELETE_CLASSROOM';
+export const UPDATE_CLASSROOM = 'UPDATE_CLASSROOM'
 
 const { 
     getAll,
     createNew,
     newComment,
-    destroyClassroom, 
+    destroyClassroom,
+    editClassroom, 
 } = ClassRoomsModel;
 
 
@@ -41,6 +43,27 @@ function deleteClassroom (classID) {
     return {
         type: DELETE_CLASSROOM,
         classID,
+    }
+}
+
+function updateClassroom (classroom) {
+    return {
+        type: UPDATE_CLASSROOM,
+        classroom,
+    }
+}
+
+export function handleUpdateClassroom (classroom_id, classroom, history) {
+    return (dispatch) => {
+        dispatch(showLoading);
+        return editClassroom(classroom_id, classroom)
+            .then((res)=> {
+                console.log('handleUpdateClassroom: ', res.data);
+                dispatch(updateClassroom(res.data));
+                dispatch(hideLoading());
+            })
+            .catch((err) => console.warn('Error Updating classroom: ', err))
+            .then(() => history.push(`/classrooms/${classroom_id}`));
     }
 }
 

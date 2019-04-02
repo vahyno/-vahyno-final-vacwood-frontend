@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import ClassRoomsModel from '../models/ClassRoomsModel';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { handleUpdateClassroom } from '../actions/classroom';
+// import ClassRoomsModel from '../models/ClassRoomsModel';
 import {Row, Input} from 'react-materialize';
 import '../styles/singleClassroom.css';
 import Header from './Header';
 import Footer from './Footer';
+
 
 
 class UpdateClassroom extends Component {
@@ -18,15 +21,19 @@ class UpdateClassroom extends Component {
     }
 
     componentDidMount() {
-        console.log('State passed through form: ', this.props.location.state.oldFormData)
-        let oldFormData = this.props.location.state.oldFormData;
-        this.setState({
-          title: oldFormData.title,
-          teacher: oldFormData.teacher,
-          info: oldFormData.info,
-          image_url: oldFormData.image_url,
-          comments: oldFormData.comments,
-        });
+        // console.log('State passed through form: ', this.props.location.state.oldFormData)
+        // let oldFormData = this.props.location.state.oldFormData;
+        const { classroomData } = this.props;
+        console.log('CLASSROOM DATA: ', classroomData);
+        // classroomData !== null
+             this.setState({
+                title: classroomData.title,
+                teacher: classroomData.teacher,
+                info: classroomData.info,
+                image_url: classroomData.image_url,
+                comments: classroomData.comments,
+                })
+            // : null;
     }
 
     handleInputChange = (event) => {
@@ -49,30 +56,34 @@ class UpdateClassroom extends Component {
             image_url: this.state.image_url,
             comments: this.state.comments,
         }
-        let classroomId = this.props.match.params.classroom_id;
-        console.log('Form Data ', formData)
+        // let classroomId = this.props.match.params.classroom_id;
+        // console.log('Form Data ', formData)
 
-        ClassRoomsModel.editClassroom(classroomId, formData)
-        .then(data => {
-            console.log(data.data);
-            this.setState({
-                // classroom: data.data
-                    title: data.data.title,
-                    teacher: data.data.teacher,
-                    info: data.data.info,
-                    image_url: data.data.image_url,
-                    comments: data.data.comments
-            });
-            this.props.history.push(`/classrooms/${classroomId}`);
-        });
+        const { dispatch, classroom_id, history } = this.props;
+        dispatch(handleUpdateClassroom(classroom_id, formData, history));
+
+        // ClassRoomsModel.editClassroom(classroomId, formData)
+        // .then(data => {
+        //     console.log(data.data);
+        //     this.setState({
+        //         // classroom: data.data
+        //             title: data.data.title,
+        //             teacher: data.data.teacher,
+        //             info: data.data.info,
+        //             image_url: data.data.image_url,
+        //             comments: data.data.comments
+        //     });
+        //     this.props.history.push(`/classrooms/${classroomId}`);
+        // });
     }
        
 
 
     render(){
-        let classroomId = this.props.match.params.classroom_id;
+        const  classroomId = this.props.match.params.classroom_id;
         return (
             <div className="blue lighten-4">
+            {JSON.stringify(this.props.classroomData)}
                 <Header/>
 
                 {/* classroom form */}
@@ -125,4 +136,21 @@ class UpdateClassroom extends Component {
     }
 }
 
-export default UpdateClassroom;
+function mapStateToProps({classrooms}, props ) {
+    const { classroom_id } = props.match.params;
+    return {
+        classroom_id,
+        classroomData: classrooms[classroom_id]
+            ? classrooms[classroom_id]
+            : {
+                classroom: '',
+                title: '',
+                teacher: '',
+                info: '',
+                image_url: '',
+                comments: [],           
+            },
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(UpdateClassroom));

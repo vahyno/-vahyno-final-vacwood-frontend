@@ -4,7 +4,8 @@ import {
     RECEIVE_CLASSROOMS,
     ADD_CLASSROOM,
     DELETE_CLASSROOM,
-    ADD_COMMENT, 
+    ADD_COMMENT,
+    UPDATE_CLASSROOM, 
 } from '../actions/classroom'; 
 
 export default function classrooms (state = {}, action) {
@@ -32,6 +33,21 @@ export default function classrooms (state = {}, action) {
             delete stateClone[classID];
 
             return stateClone;
+
+        case UPDATE_CLASSROOM:
+            const { classroom } = action;
+            // console.log('REDUCER UPDATE CLASSROOM :', classroom, 'STATE: ', state )
+            const { _id, image_url, info, teacher, title} = classroom;
+            return {
+                ...state,
+                [_id] : {
+                    ...state[_id],
+                    image_url: [image_url],
+                    info: [info],
+                    teacher: [teacher],
+                    title: [title],
+                }
+            }    
             
         case ADD_COMMENT:
             const { comment, classId } = action;
