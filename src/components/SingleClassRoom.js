@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import LoadingBar from 'react-redux-loading-bar';
 
 import { handleDeleteClassroom } from '../actions/classroom';
 import ClassRoomsModel from '../models/ClassRoomsModel';
@@ -12,26 +13,27 @@ import Footer from './Footer';
 import MessageForm from './MessageForm';
 
 
+
 class SingleClassRoom extends Component {
     
-    state = {
-        classroom: '',
-        newComment: '',
-        responseToComment: '',
-    }
+    // state = {
+    //     classroom: '',
+    //     // newComment: '',
+    //     // responseToComment: '',
+    // }
 
-    componentDidMount() {
-        let classroomId = this.props.match.params.classroom_id;
-        ClassRoomsModel.getOneClassroom(classroomId)
-        .then(data => {
-            console.log('Single Classroom by ID: ', data.data);
-            this.setState({
-                classroom: data.data,
-                newComment: '',
-                responseToComment: '',
-            });
-        });
-    }
+    // componentDidMount() {
+    //     let classroomId = this.props.match.params.classroom_id;
+    //     ClassRoomsModel.getOneClassroom(classroomId)
+    //     .then(data => {
+    //         console.log('Single Classroom by ID: ', data.data);
+    //         this.setState({
+    //             classroom: data.data,
+    //             newComment: '',
+    //             responseToComment: '',
+    //         });
+    //     });
+    // }
 
     deleteComment = (comment_id) => {
         let classroomId = this.props.match.params.classroom_id;
@@ -104,21 +106,25 @@ class SingleClassRoom extends Component {
     }
 
     render(){
-        console.log("Single Classroom STATE: ", this.state.classroom)
-        const singleClassroom = this.state.classroom === '' ? <h2>Loading...</h2> : this.state.classroom
-        const classroomId = this.props.match.params.classroom_id;
+        // console.log("Single Classroom STATE: ", this.state.classroom)
+        // const singleClassroom = this.state.classroom === '' ? <h2>Loading...</h2> : this.state.classroom
+        // const classroomId = this.props.match.params.classroom_id;
+        
+        // console.log('REDUX ID: ', this.props.classroomId, 'CLASSROOOM:  ',this.props.singleClassroom);
+        const singleClassroom = !this.props.singleClassroom ?  <LoadingBar /> : this.props.singleClassroom
+        const { classroomId } = this.props;
         
         return (
             <div className="blue lighten-5" >
                 <Header/>
                 <div className="singleClassroomContainer">
                     <Link 
-                        to ={{pathname: `/classrooms/${singleClassroom._id}/update`}} 
+                        to ={{pathname: `/classrooms/${classroomId}/update`}} 
                         className="commentButton btn-flat btn-small waves-effect waves-light blue accent-1 right">
                         Update Classroom
                     </Link>
                     <button 
-                        onClick={() => this.deleteClassroom(singleClassroom._id)} 
+                        onClick={() => this.deleteClassroom(classroomId)} 
                         className="commentButton btn-flat btn-small waves-effect waves-light red lighten-1 btn right">
                         Delete Classroom
                     </button>
@@ -142,7 +148,18 @@ class SingleClassRoom extends Component {
     }
 }
 
-export default withRouter(connect()(SingleClassRoom));
+function mapStateToProps({ classrooms }, props ){
+    const { classroom_id } = props.match.params;
+    return {
+        classroomId: classroom_id,
+        singleClassroom: classroom_id 
+            ? classrooms[classroom_id] 
+            : {},
+    }
+}
+
+
+export default withRouter(connect(mapStateToProps)(SingleClassRoom));
 
 // //OLD comment props
 // commentsData={this.state.classroom}
