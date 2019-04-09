@@ -4,8 +4,9 @@ import {
     RECEIVE_CLASSROOMS,
     ADD_CLASSROOM,
     DELETE_CLASSROOM,
-    ADD_COMMENT,
     UPDATE_CLASSROOM, 
+    ADD_COMMENT,
+    DELETE_COMMENT,
 } from '../actions/classroom'; 
 
 export default function classrooms (state = {}, action) {
@@ -60,6 +61,16 @@ export default function classrooms (state = {}, action) {
                     comments:  state[classId].comments.concat(comment),
                 }                
             }
+
+        case DELETE_COMMENT:
+            const { commentId } = action;
+            return {
+                ...state,
+                [action.classId] : {
+                    ...state[action.classId],
+                    comments: state[action.classId].comments.filter(comment => comment._id !== commentId),
+                }
+            }    
 
         default:
             return state;  

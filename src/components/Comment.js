@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import ResponseForm from './ResponseForm';
 import ClassRoomsModel from '../models/ClassRoomsModel';
+import { handleDeleteComment } from '../actions/classroom';
 
 import '../styles/singleClassroom.css';
 
@@ -29,10 +30,11 @@ class Comment extends Component {
 
     deleteComment = (comment_id) => {
         // let classroomId = this.props.match.params.classroom_id;
-        const { classroomId } = this.props;
+        const { dispatch, classroomId } = this.props;
+        dispatch(handleDeleteComment(classroomId, comment_id));
         //console.log("classroomId: ", classroomId);
         //console.log("comment_id: ", comment_id );
-        ClassRoomsModel.destroyComment(classroomId, comment_id)
+        // ClassRoomsModel.destroyComment(classroomId, comment_id) //!!!
         // .then(commentUpdate => {
         //     //console.log(commentUpdate);
         //     let updatedComments = this.state.classroom.comments.filter(comment =>{

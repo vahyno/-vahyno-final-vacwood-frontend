@@ -6,14 +6,16 @@ export const RECEIVE_CLASSROOMS = 'RECEIVE_CLASSROOMS';
 export const ADD_CLASSROOM = 'ADD_CLASSROOM';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_CLASSROOM = 'DELETE_CLASSROOM';
-export const UPDATE_CLASSROOM = 'UPDATE_CLASSROOM'
+export const UPDATE_CLASSROOM = 'UPDATE_CLASSROOM';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 const { 
     getAll,
     createNew,
-    newComment,
     destroyClassroom,
     editClassroom, 
+    newComment,
+    destroyComment,
 } = ClassRoomsModel;
 
 
@@ -31,14 +33,6 @@ function addClassroom (classroom) {
     }
 }
 
-function addComment (classId, comment) {
-    return {
-        type: ADD_COMMENT,
-        comment,
-        classId,
-    }
-}
-
 function deleteClassroom (classID) {
     return {
         type: DELETE_CLASSROOM,
@@ -50,6 +44,32 @@ function updateClassroom (classroom) {
     return {
         type: UPDATE_CLASSROOM,
         classroom,
+    }
+}
+
+function addComment (classId, comment) {
+    return {
+        type: ADD_COMMENT,
+        comment,
+        classId,
+    }
+}
+
+function deleteComment (classId, commentId) {
+    return {
+        type: DELETE_COMMENT,
+        classId,
+        commentId,
+    }
+}
+
+export function handleDeleteComment (classId, commentId) {
+    return (dispatch) => {
+        return destroyComment(classId, commentId)
+            .then((res) => {
+                dispatch(deleteComment(classId, commentId));
+            })
+            .catch((err) => console.warn('Error Deleting comment', err));
     }
 }
 
@@ -69,10 +89,12 @@ export function handleUpdateClassroom (classroom_id, classroom, history) {
 
 export function handleDeleteClassroom (classId, history) {
     return (dispatch) => {
+        dispatch(showLoading());
         return destroyClassroom(classId)
             .then((res) => {
                 // console.log('destroy classroom: ',res);
                 dispatch(deleteClassroom(classId));
+                dispatch(hideLoading());
             })
             .catch((err) => console.warn('Error Deleting classroom: ', err))
             .then(() => history.push('/classrooms'));
