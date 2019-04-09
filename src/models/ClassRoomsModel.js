@@ -27,12 +27,13 @@ class ClassRoomsModel {
 
     static editClassroom = (classroom_id, classroom) => {
         const request = axios.put(`${CURRENT}/api/classrooms/${classroom_id}`, classroom);
+        // console.log('AXIOS EDIT: ', request);
         return request;
     }
 
     static destroyClassroom = (classroom_id) => {
         const request = axios.delete(`${CURRENT}/api/classrooms/${classroom_id}`);
-        console.log('AXIOS DESTROY', request);
+        // console.log('AXIOS DESTROY', request);
         return request;
     }
 

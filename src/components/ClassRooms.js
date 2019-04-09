@@ -22,7 +22,7 @@ class ClassRooms extends Component {
             <Header/>
             <div className="allClassroomsContainer blue accent-1">
                 <div className="row center-cols center-align">
-                    { classroomIDs.length && (
+                    { classroomIDs.length > 0 && (
                         classroomIDs.map((classID) => (
                             <div className="row allclassrooms card-action hoverable" key={classID}>
                                 <Link to ={`/classrooms/${classID}`} className="col s12 m7">
