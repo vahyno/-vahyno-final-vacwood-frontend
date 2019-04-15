@@ -8,6 +8,8 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_CLASSROOM = 'DELETE_CLASSROOM';
 export const UPDATE_CLASSROOM = 'UPDATE_CLASSROOM';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
+export const RESPONSE_COMMENT = 'RESPONSE_COMMENT';
 
 const { 
     getAll,
@@ -16,6 +18,8 @@ const {
     editClassroom, 
     newComment,
     destroyComment,
+    updateComment,
+    replyToComment, 
 } = ClassRoomsModel;
 
 
@@ -60,6 +64,52 @@ function deleteComment (classId, commentId) {
         type: DELETE_COMMENT,
         classId,
         commentId,
+    }
+}
+
+function updateCommentAction (classId, commentId, comment) {
+    return {
+        type: UPDATE_COMMENT,
+        classId,
+        commentId,
+        comment,
+    }
+}
+
+function responseCommentAction (classId, commentId, response) {
+    return {
+        type: RESPONSE_COMMENT,
+        classId,
+        commentId,
+        response,
+    }
+}
+
+
+export function handleUpdateComment (classId, commentId, comments, history) {
+    return (dispatch) => {
+        console.log('COMMENT: ', comments);
+        // dispatch(updateCommentAction(classId, commentId, comment));
+        // history.push(`/classrooms/${classId}`)
+        return updateComment(classId, commentId, comments)
+            .then((res) => {
+                // console.log('handleUpdateComment RESPONSE!!!!!!!!: ', res);
+                dispatch(updateCommentAction(classId, commentId, res.data.comments));
+            })
+            .catch((err) => console.warn('Error updating comment: ', err))
+            .then(() => history.push(`/classrooms/${classId}`));
+    }
+}
+
+export function handleResponseToComment (classId, commentId, response) {
+    return (dispatch) => {
+        return replyToComment(classId, commentId, response)
+            .then((res) => {
+                // console.log('ACTION CLASS ID: ', classId);
+                // console.log('handleResponseToComment res: ', res.data);
+                dispatch(responseCommentAction(classId, commentId, res.data));
+            })
+            .catch((err) => console.warn('Error Replying to comment: ', err)); 
     }
 }
 

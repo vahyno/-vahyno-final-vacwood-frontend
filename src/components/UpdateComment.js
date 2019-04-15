@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import ClassRoomsModel from '../models/ClassRoomsModel';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { handleUpdateComment } from '../actions/classroom';
 import '../styles/singleClassroom.css';
 import Header from './Header';
 import Footer from './Footer';
@@ -8,34 +9,24 @@ import Footer from './Footer';
 
 class UpdateComment extends Component {
     state = {
-        title: '',
-        teacher: '',
-        info: '',
-        image_url: '',
         comments: '',
-        commentToUpdate: ''
+        commentToUpdate: '',
     }
 
     componentDidMount() {
-        console.log('State passed through form: ', this.props.location.state.oldFormData);
-        let oldFormData = this.props.location.state.oldFormData;
-        console.log('old', oldFormData)
-        // let commentID = this.props.match.params.comment_id;
+        // console.log('State passed through form: ', this.props.location.state.oldFormData);
+        const { oldFormData } = this.props.location.state;
+        // console.log('old', oldFormData)
+        let commentID = this.props.match.params.comment_id;
         
-        let commentToUpdateArr = this.props.location.state.oldFormData.comments.filter(comment => {
-            return comment._id === this.props.match.params.comment_id
-        })
+        let commentToUpdateArr = oldFormData.comments.filter(comment => comment._id === commentID)
         let commentToUpdate = commentToUpdateArr[0]
-        console.log("UPDATE : ", commentToUpdate)
+
         this.setState({
-            title: oldFormData.title,
-            teacher: oldFormData.teacher,
-            info: oldFormData.info,
-            image_url: oldFormData.image_url,
             comments: oldFormData.comments,
             commentToUpdate,
         });
-    }
+    }    
 
     handleCommentForm = (event) => {
         this.setState({
@@ -44,46 +35,31 @@ class UpdateComment extends Component {
                 content: event.target.value
             },
         });
-        console.log('handleCommentForm => state', this.state)
+        // console.log('handleCommentForm: ', this.state.commentToUpdate);
     }
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        console.log('onFormSubmit => Form Submit', event);
-        let commentId = this.props.match.params.comment_id;
-        let classroomId = this.props.match.params.classroom_id;
+        // console.log('onFormSubmit => Form Submit', event);
+
+        const { comment_id, classroom_id } = this.props.match.params;
+        const { dispatch, history } = this.props;
+
         let updatedComment = this.state.commentToUpdate;
-        let filteredComments = this.state.comments.filter(comment => {
-            return comment._id !== commentId;
-        })
-        let commentToUpdate = this.state.commentToUpdate;
+        let filteredComments = this.state.comments.filter(comment => comment._id !== comment_id)
         let updatedComments = filteredComments.concat(updatedComment);
 
-        let formData = {
-            title: this.state.title,
-            teacher: this.state.teacher,
-            info: this.state.info,
-            image_url: this.state.image_url,
-            comments: updatedComments,
-            commentToUpdate,
-        }
-        // console.log('onFormSubmit => Form Data ', formData)
-        // let commentData = this.state.commentToUpdate;
-        console.log('classroomId: ', classroomId, 'commentId: ', commentId);
-        ClassRoomsModel.updateComment(classroomId, commentId, formData)
-        .then(data => {
-            console.log('ClassRoomsModel.updateComment => ', data.data);
-            this.setState({
-                comments: data.data.comments,
-            });
-            this.props.history.push(`/classrooms/${classroomId}`);
-        });
+        dispatch(handleUpdateComment(classroom_id, comment_id, updatedComments, history));
+
+        this.setState(() => ({
+        comments: '',
+        commentToUpdate: '',
+        }));
     }
 
     render() {
-        console.log("STATE: ", this.state)
         let classroomId = this.props.match.params.classroom_id;
-        console.log('Render => Classroom ID: ',classroomId);
+        // console.log('Render => Classroom ID: ',classroomId);
         // let comment = this.state.comments ? this.state.comments : "Loading";
         return (
             <div className="view-fix blue lighten-4">
@@ -121,5 +97,5 @@ class UpdateComment extends Component {
     }
 }
 
-export default UpdateComment;
+export default withRouter(connect()(UpdateComment));
 

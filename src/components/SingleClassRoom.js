@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
 
 import { handleDeleteClassroom } from '../actions/classroom';
-import ClassRoomsModel from '../models/ClassRoomsModel';
+// import ClassRoomsModel from '../models/ClassRoomsModel';
 import Comments from './Comments';
 
 import '../styles/singleClassroom.css';

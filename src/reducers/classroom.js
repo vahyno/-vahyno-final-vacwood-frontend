@@ -7,6 +7,8 @@ import {
     UPDATE_CLASSROOM, 
     ADD_COMMENT,
     DELETE_COMMENT,
+    UPDATE_COMMENT,
+    RESPONSE_COMMENT,
 } from '../actions/classroom'; 
 
 export default function classrooms (state = {}, action) {
@@ -69,6 +71,31 @@ export default function classrooms (state = {}, action) {
                 [action.classId] : {
                     ...state[action.classId],
                     comments: state[action.classId].comments.filter(comment => comment._id !== commentId),
+                }
+            } 
+        
+        case UPDATE_COMMENT:
+            // console.log('UPDATE_COMMENT ACTION: ', action, 'STATE: ', state, 'content: ', action.comment);
+            // classId, commentId, comment,
+            return {
+                ...state,
+                [action.classId] : {
+                    ...state[action.classId],
+                    // comments: state[action.classId].comments.filter((comt) => comt._id !== action.commentId).concat(action.comment),
+                    comments: [...action.comment]
+                }
+            }
+            
+        case RESPONSE_COMMENT:
+            // console.log('RESPONSE_COMMENT ACTION: ', action, 'STATE: ', state);
+            const c0mment = state[action.classId].comments.filter((comt) => comt._id === action.commentId)[0];
+            c0mment.comments = c0mment.comments.concat([action.response]);
+
+            return {
+                ...state,
+                [action.classId] : {
+                    ...state[action.classId],
+                    comments: state[action.classId].comments.filter((comt) => comt._id !== action.commentId).concat(c0mment)
                 }
             }    
 

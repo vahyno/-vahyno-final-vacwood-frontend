@@ -1,30 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { handleResponseToComment } from '../actions/classroom';
 import '../styles/singleClassroom.css';
 
-const ResponseForm = (props) => {
-    const {handleResponseCommentForm, commentId, responseToComment, handleSubmitForm} = props;
-    return (
-        <div className="row comment_response_form" style={{ display: 'block'}}>
-            <form id={commentId} className="col s12" onSubmit={(event)=>{handleSubmitForm(event, commentId)}}>
-                <div className="row">
-                    <div className="input-field col s6">
-                        <input id={commentId} onInput={(e) => handleResponseCommentForm(e, commentId)}
-                        value={responseToComment}
-                        placeholder="Write your response!"
-                        type="text"
-                        className="validate" required/>
+class ResponseForm extends Component {
+    state = {
+        responseToComment: '',
+    }
+
+    handleResponseCommentForm = (event) => {
+        const responseToComment = event.target.value;
+        this.setState(() => ({
+             responseToComment 
+        }));
+        // console.log('response: ', this.state.responseToComment);
+    }
+    
+    submitReplyComment = (event) => {
+        event.preventDefault();
+
+        const { classroom_id } = this.props.match.params;
+        const { commentId, dispatch } = this.props;
+        const { responseToComment } = this.state;
+        // console.log('RESPONSE FORM, submitReplyComment => classroomId: ', classroom_id, 'commentID: ', commentId, 'Response: ', responseToComment);
+        dispatch(handleResponseToComment(classroom_id, commentId, responseToComment));
+        this.setState(()=>({responseToComment: ''}));
+        this.props.hideReplyForm();   
+    }
+    
+
+    render(){
+        const { responseToComment } = this.state;
+        return (
+            <div className="row comment_response_form" style={{ display: 'block'}}>
+                <form className="col s12" onSubmit={this.submitReplyComment}>
+                    <div className="row">
+                        <div className="input-field col s6">
+                            <input onChange={this.handleResponseCommentForm}
+                            value={responseToComment}
+                            placeholder="Write your response!"
+                            type="text"
+                            className="validate" required/>
+                        </div>
+                        <button  
+                            className="commentReplyButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
+                            type="submit" 
+                            name="action">
+                            Submit
+                        </button>
                     </div>
-                    <button  
-                        className="commentReplyButton btn-flat btn-small waves-effect waves-light blue accent-1 right"
-                        type="submit" 
-                        name="action">
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
-    )
+                </form>
+            </div>
+        )
+    }
 }
 
-export default ResponseForm;
+export default withRouter(connect()(ResponseForm));
 

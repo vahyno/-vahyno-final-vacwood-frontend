@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import ResponseForm from './ResponseForm';
-import ClassRoomsModel from '../models/ClassRoomsModel';
+// import ClassRoomsModel from '../models/ClassRoomsModel';
 import { handleDeleteComment } from '../actions/classroom';
 
 import '../styles/singleClassroom.css';
@@ -19,84 +19,18 @@ class Comment extends Component {
         // this.props.submitReplyComment(event, commentID);
         this.setState({showReplyForm: !showReplyForm})
     }
-
-    responseToComment = () => {
-
-    }
     
-    handleResponseCommentForm = () => {
-
-    }
-
     deleteComment = (comment_id) => {
-        // let classroomId = this.props.match.params.classroom_id;
         const { dispatch, classroomId } = this.props;
         dispatch(handleDeleteComment(classroomId, comment_id));
-        //console.log("classroomId: ", classroomId);
-        //console.log("comment_id: ", comment_id );
-        // ClassRoomsModel.destroyComment(classroomId, comment_id) //!!!
-        // .then(commentUpdate => {
-        //     //console.log(commentUpdate);
-        //     let updatedComments = this.state.classroom.comments.filter(comment =>{
-        //         return comment._id !== comment_id;
-        //     });
-        //     //console.log(updatedComments);
-        //     this.setState({
-        //         classroom: {
-        //             ...this.state.classroom,
-        //             comments: updatedComments,
-        //         }
-        //     });
-        // });
     }
 
-
-    // handleCommentForm = (event) => {
-    //     let newComment = event.target.value;
-    //     this.setState({
-    //         newComment,
-    //     })
-    //     console.log('handleCommentForm => newComment', newComment);
-    // }
-    // onFormSubmit = (event) => {
-    //     event.preventDefault();
-    //     let classroomId = this.props.match.params.classroom_id;
-    //     let commentContent = this.state.newComment;
-    //     ClassRoomsModel.newComment(classroomId, commentContent)
-    //     .then(newComment => {
-    //         this.setState({
-    //             classroom: {
-    //                 ...this.state.classroom,
-    //                 comments: this.state.classroom.comments.concat(newComment.data),
-    //             },
-    //             newComment: '',
-    //         });
-    //     });
-    //     // console.log(this.state)
-    // }
-
-    // handleResponseCommentForm = (event, commentID) => {
-    //     console.log("handleResponseCommentForm - Input ID: ", event.target.id);
-    //     console.log('handleResponseCommentForm - commentID: ', commentID)
-    //     const responseToComment = event.target.value;
-    //     this.setState({ responseToComment });
-    // }
-
-    // submitReplyComment = (event, commentID) => {
-    //     event.preventDefault();
-    //     let classroomId = this.props.match.params.classroom_id;
-    //     //let commentContent = this.state[commentID];
-    //     const commentContent = this.state.responseToComment;
-    //     console.log('submitReplyComment => classroomId: ', classroomId, 'commentID: ', commentID, 'commentContent: ', commentContent);
-    //     ClassRoomsModel.replyToComment(classroomId, commentID, commentContent)
-    //         .then(res => this.setState({classroom: res.data, commentContent: ''}));
-    //     this.setState({responseToComment: ''});   
-    // }
-
-    
+    hideReplyForm = () => {
+        this.setState(() => ({showReplyForm: false}));
+    }
 
     render(){
-        console.log('SINGLE COMMENT: ', this.props.comment);
+        // console.log('SINGLE COMMENT: ', this.props.comment);
         const { classroom, comment, commentId } = this.props;
         const { content, created_at, comments } = comment;
 
@@ -128,9 +62,8 @@ class Comment extends Component {
                     {this.state.showReplyForm && 
                             <ResponseForm 
                                 commentId={commentId}
-                                responseToComment={this.responseToComment}
-                                handleResponseCommentForm={this.handleResponseCommentForm}
-                                handleSubmitForm={this.handleSubmitForm}/>
+                                hideReplyForm={this.hideReplyForm}
+                            />
                         }
                     {/* response to comment form */}
                         
