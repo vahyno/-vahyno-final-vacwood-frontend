@@ -7,7 +7,7 @@
 
 ## Technologies used:
 ### Front End:
-* Javascript / React
+* Javascript / React / Redux
 * HTML
 * CSS / Materialize
 ### Back End:
