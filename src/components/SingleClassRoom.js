@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
 
 import { handleDeleteClassroom } from '../actions/classroom';
-// import ClassRoomsModel from '../models/ClassRoomsModel';
 import Comments from './Comments';
 
 import '../styles/singleClassroom.css';
@@ -17,7 +16,6 @@ import MessageForm from './MessageForm';
 class SingleClassRoom extends Component {
     
     deleteClassroom = (classroom_id) => {
-        // console.log("classroom_id: ", classroom_id); 
         if (window.confirm('Are you sure you want to delete this Classroom?')) {
             const { dispatch } = this.props;
             dispatch(handleDeleteClassroom(classroom_id, this.props.history));

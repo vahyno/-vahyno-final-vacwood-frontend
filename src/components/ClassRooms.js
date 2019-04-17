@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import { handleInitialData } from '../actions/classroom';
-
-
-// import ClassRoomsModel from '../models/ClassRoomsModel';
 import '../styles/classrooms.css';
 
 import Header from './Header';
@@ -14,7 +10,6 @@ import { connect } from 'react-redux';
 
 class ClassRooms extends Component {
     render (){
-        // console.log('PROPS!!!!', this.props)
         const { classroomIDs } = this.props;
 
         return (

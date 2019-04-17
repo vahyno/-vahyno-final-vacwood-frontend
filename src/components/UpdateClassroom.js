@@ -64,9 +64,6 @@ class UpdateClassroom extends Component {
                 {/* classroom form */}
                 <div className="column updateClassroomFormContainer center-align">
                     <form className="col s12" onSubmit={this.onFormSubmit}>
-                       {/* <div className="input-field col s12">
-                            <input onChange={ this.handleInputChange } name="title" value={this.state.title} placeholder="Title" id="title" type="text" className="validate" required/>
-                        </div> */}
                         <Row className="input-field col s12">
                             <Input name="title" onChange={ this.handleInputChange } s={12} type='select' label="Classroom" defaultValue={ this.state.title }>
                                 <option onChange={ this.handleInputChange } value='Kindergarten'>{this.state.title}</option>

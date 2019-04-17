@@ -20,12 +20,10 @@ class NewClassRoom extends Component {
     }
 
     handleInputChange = (e) => {
-        // console.log('target', e.target)
         let inputFieldName = e.target.name;
         this.setState({
         [inputFieldName]: e.target.value //computer property
         })
-        // console.log('state', this.state)
     }
 
     handleURLChange = (e) => {
@@ -43,7 +41,6 @@ class NewClassRoom extends Component {
 
     onFormSubmit = (e) => {
         e.preventDefault();
-        // console.log('Form Submit');
         let formData = {
             title: this.state.title,
             teacher: this.state.teacher,

@@ -88,12 +88,8 @@ function responseCommentAction (classId, commentId, response) {
 
 export function handleUpdateComment (classId, commentId, comments, history) {
     return (dispatch) => {
-        console.log('COMMENT: ', comments);
-        // dispatch(updateCommentAction(classId, commentId, comment));
-        // history.push(`/classrooms/${classId}`)
         return updateComment(classId, commentId, comments)
             .then((res) => {
-                // console.log('handleUpdateComment RESPONSE!!!!!!!!: ', res);
                 dispatch(updateCommentAction(classId, commentId, res.data.comments));
             })
             .catch((err) => console.warn('Error updating comment: ', err))
@@ -105,8 +101,6 @@ export function handleResponseToComment (classId, commentId, response) {
     return (dispatch) => {
         return replyToComment(classId, commentId, response)
             .then((res) => {
-                // console.log('ACTION CLASS ID: ', classId);
-                // console.log('handleResponseToComment res: ', res.data);
                 dispatch(responseCommentAction(classId, commentId, res.data));
             })
             .catch((err) => console.warn('Error Replying to comment: ', err)); 
@@ -128,7 +122,6 @@ export function handleUpdateClassroom (classroom_id, classroom, history) {
         dispatch(showLoading());
         return editClassroom(classroom_id, classroom)
             .then((res)=> {
-                // console.log('handleUpdateClassroom: ', res.data);
                 dispatch(updateClassroom(res.data));
                 dispatch(hideLoading());
             })
@@ -142,7 +135,6 @@ export function handleDeleteClassroom (classId, history) {
         dispatch(showLoading());
         return destroyClassroom(classId)
             .then((res) => {
-                // console.log('destroy classroom: ',res);
                 dispatch(deleteClassroom(classId));
                 dispatch(hideLoading());
             })
@@ -155,7 +147,6 @@ export function handleCreateComment (classId, comment) {
     return (dispatch) => {
         return newComment(classId, comment)
             .then(newComment => {
-                // console.log('CLASS_ID', classId, '!!!!!!NEW COMMENT: ', newComment.data)
                 dispatch(addComment(classId, newComment.data));
             })
             .catch((err) => console.warn('Error creating comment: ', err));
@@ -181,7 +172,6 @@ export function handleAddClassroom(classroom, history) {
     return (dispatch) => {
         return createNew(classroom)
             .then((classR) => {
-                // console.log('classsR: ', classR)
                 dispatch(addClassroom(classR));
             })
             .catch((err) => console.warn('Error creating new Classroom: ', err))

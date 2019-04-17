@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import ClassRoomsModel from '../models/ClassRoomsModel';
 import { handleCreateComment } from '../actions/classroom';
 
 
@@ -15,7 +14,6 @@ class MessageForm extends Component {
         this.setState({
             commentText: newComment
         })
-        // console.log('handleCommentForm => newComment', newComment);
     }
     onFormSubmit = (event) => {
         event.preventDefault();
@@ -26,22 +24,11 @@ class MessageForm extends Component {
         this.setState(()=> ({
             commentText: ''
         }));
-
-        // ClassRoomsModel.newComment(classroomId, commentText)
-        // .then(newComment => {
-        //     this.setState({
-        //         classroom: {
-        //             ...this.state.classroom,
-        //             comments: this.state.classroom.comments.concat(newComment.data),
-        //         },
-        //         newComment: '',
-        //     });
-        // });
-        // console.log(this.state)
     }
 
     render() {
         const { commentText } = this.state;
+        const textLeft = 300 - commentText.length;
         return (
             <div className="row comment_form">
                 <form className="col s12" onSubmit={this.onFormSubmit}>
@@ -52,6 +39,7 @@ class MessageForm extends Component {
                             placeholder="Write your message!"
                             id="comment"
                             type="text"
+                            maxLength={300}
                             className="validate" required/>
                         </div>
                     </div>
@@ -61,8 +49,13 @@ class MessageForm extends Component {
                         name="action">
                             New Message
                     </button>
+                    {textLeft <= 100 && (
+                        <div 
+                            className='row right' 
+                            style={{marginTop:'-3%', marginRight:'2%', fontsize:20, color:'blue', fontWeight: 700,}}>
+                                {textLeft}
+                        </div>)}
                 </form>
-                {/* { classroomCommentReplies } */}
             </div>
         )
     }

@@ -5,7 +5,6 @@ import '../styles/classrooms.css';
 
 class ClassRoom extends Component {
     render() {
-        // console.log('INDIVIDUAL CLASS :', this.props)
         const { title, teacher, image_url, info} = this.props.classroom
         return (
             <div className="card">

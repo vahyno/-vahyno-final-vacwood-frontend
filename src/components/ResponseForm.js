@@ -14,16 +14,13 @@ class ResponseForm extends Component {
         this.setState(() => ({
              responseToComment 
         }));
-        // console.log('response: ', this.state.responseToComment);
     }
     
     submitReplyComment = (event) => {
         event.preventDefault();
 
-        const { classroom_id } = this.props.match.params;
-        const { commentId, dispatch } = this.props;
+        const { classroom_id, commentId, dispatch } = this.props;
         const { responseToComment } = this.state;
-        // console.log('RESPONSE FORM, submitReplyComment => classroomId: ', classroom_id, 'commentID: ', commentId, 'Response: ', responseToComment);
         dispatch(handleResponseToComment(classroom_id, commentId, responseToComment));
         this.setState(()=>({responseToComment: ''}));
         this.props.hideReplyForm();   
@@ -56,5 +53,14 @@ class ResponseForm extends Component {
     }
 }
 
-export default withRouter(connect()(ResponseForm));
+function mapStateToProps(state, props) {
+    const { classroom_id } = props.match.params;
+    const { commentId } = props
+    return {
+        classroom_id,
+        commentId,
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(ResponseForm));
 

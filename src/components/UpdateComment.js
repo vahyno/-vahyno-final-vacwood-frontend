@@ -15,17 +15,18 @@ class UpdateComment extends Component {
 
     componentDidMount() {
         // console.log('State passed through form: ', this.props.location.state.oldFormData);
-        const { oldFormData } = this.props.location.state;
-        // console.log('old', oldFormData)
-        let commentID = this.props.match.params.comment_id;
+        // const { oldFormData } = this.props.location.state;
+        const { comment_id, oldFormData } = this.props;
         
-        let commentToUpdateArr = oldFormData.comments.filter(comment => comment._id === commentID)
-        let commentToUpdate = commentToUpdateArr[0]
+        if (oldFormData) { 
+            let commentToUpdateArr = oldFormData.comments.filter(comment => comment._id === comment_id)
+            let commentToUpdate = commentToUpdateArr[0]
 
-        this.setState({
-            comments: oldFormData.comments,
-            commentToUpdate,
-        });
+            this.setState({
+                comments: oldFormData.comments,
+                commentToUpdate,
+            });
+        }
     }    
 
     handleCommentForm = (event) => {
@@ -35,15 +36,11 @@ class UpdateComment extends Component {
                 content: event.target.value
             },
         });
-        // console.log('handleCommentForm: ', this.state.commentToUpdate);
     }
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        // console.log('onFormSubmit => Form Submit', event);
-
-        const { comment_id, classroom_id } = this.props.match.params;
-        const { dispatch, history } = this.props;
+        const { dispatch, history, comment_id, classroom_id } = this.props;
 
         let updatedComment = this.state.commentToUpdate;
         let filteredComments = this.state.comments.filter(comment => comment._id !== comment_id)
@@ -59,8 +56,6 @@ class UpdateComment extends Component {
 
     render() {
         let classroomId = this.props.match.params.classroom_id;
-        // console.log('Render => Classroom ID: ',classroomId);
-        // let comment = this.state.comments ? this.state.comments : "Loading";
         return (
             <div className="view-fix blue lighten-4">
                 <Header/>
@@ -97,5 +92,17 @@ class UpdateComment extends Component {
     }
 }
 
-export default withRouter(connect()(UpdateComment));
+function mapStateToProps({ classrooms } , props) {
+    const { comment_id, classroom_id } = props.match.params;
+    const oldFormData = classrooms? 
+        classrooms[classroom_id] : {}
+
+    return {
+        comment_id,
+        classroom_id,
+        oldFormData,
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(UpdateComment));
 

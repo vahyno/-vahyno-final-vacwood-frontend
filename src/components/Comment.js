@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import ResponseForm from './ResponseForm';
-// import ClassRoomsModel from '../models/ClassRoomsModel';
 import { handleDeleteComment } from '../actions/classroom';
 
 import '../styles/singleClassroom.css';
@@ -16,7 +15,6 @@ class Comment extends Component {
 
     handleSubmitForm = (event, commentID) => {
         const {showReplyForm} = this.state;
-        // this.props.submitReplyComment(event, commentID);
         this.setState({showReplyForm: !showReplyForm})
     }
     
@@ -30,7 +28,6 @@ class Comment extends Component {
     }
 
     render(){
-        // console.log('SINGLE COMMENT: ', this.props.comment);
         const { classroom, comment, commentId } = this.props;
         const { content, created_at, comments } = comment;
 
@@ -57,15 +54,6 @@ class Comment extends Component {
                             className="commentButton btn-flat btn-small waves-effect waves-light blue accent-2 right">
                             Edit
                         </Link>
-
-                    {/*response to comment form */}
-                    {this.state.showReplyForm && 
-                            <ResponseForm 
-                                commentId={commentId}
-                                hideReplyForm={this.hideReplyForm}
-                            />
-                        }
-                    {/* response to comment form */}
                         
                         {/* replies to Comment */}
                         <div style={{marginTop:'3em'}}>
@@ -81,6 +69,15 @@ class Comment extends Component {
                             }
                         </div>
                         {/* replies to Comment */}
+                        
+                        {/*response to comment form */}
+                        {this.state.showReplyForm && 
+                                <ResponseForm 
+                                    commentId={ commentId }
+                                    hideReplyForm={ this.hideReplyForm }
+                                />
+                            }
+                        {/* response to comment form */}
                     </div>
                 </div>
             </div>           

@@ -28,7 +28,6 @@ class App extends Component {
               <Route exact path='/classrooms/new' component={ NewClassRoom } />
               <Route exact path='/classrooms/:classroom_id' component={ SingleClassRoom } />
               <Route exact path='/classrooms/:classroom_id/update' component={ UpdateClassroom } />
-
               <Route exact path='/classrooms/:classroom_id/comments/:comment_id/update' component={ UpdateComment } />
           </Switch>
         </div>
