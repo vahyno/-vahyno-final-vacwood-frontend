@@ -27,20 +27,17 @@ class ClassRoomsModel {
 
     static editClassroom = (classroom_id, classroom) => {
         const request = axios.put(`${ROUTE}/api/classrooms/${classroom_id}`, classroom);
-        // console.log('AXIOS EDIT: ', request);
         return request;
     }
 
     static destroyClassroom = (classroom_id) => {
         const request = axios.delete(`${ROUTE}/api/classrooms/${classroom_id}`);
-        // console.log('AXIOS DESTROY', request);
         return request;
     }
 
     // comment related methods
 
     static newComment = (classroom_id, content) => {
-        console.log('Axios classroom_id: ', classroom_id, 'content: ', content);
         const request = axios.post(`${ROUTE}/api/classrooms/${classroom_id}/comments`, {content: content});
         return request;
     }
